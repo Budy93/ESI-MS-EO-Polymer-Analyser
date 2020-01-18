@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_ms_eo_rechner" default="compile.module.ms_eo_rechner">
+  <dirname property="module.ms_eo_rechner.basedir" file="${ant.file.module_ms_eo_rechner}"/>
+  
+  <property name="module.jdk.home.ms_eo_rechner" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.ms_eo_rechner" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.ms_eo_rechner" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.ms_eo_rechner" value="-encoding windows-1252 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="ms_eo_rechner.output.dir" value="${module.ms_eo_rechner.basedir}/out/production/MS_EO_RECHNER"/>
+  <property name="ms_eo_rechner.testoutput.dir" value="${module.ms_eo_rechner.basedir}/out/test/MS_EO_RECHNER"/>
+  
+  <path id="ms_eo_rechner.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="ms_eo_rechner.module.production.classpath">
+    <path refid="${module.jdk.classpath.ms_eo_rechner}"/>
+  </path>
+  
+  <path id="ms_eo_rechner.runtime.production.module.classpath">
+    <pathelement location="${ms_eo_rechner.output.dir}"/>
+  </path>
+  
+  <path id="ms_eo_rechner.module.classpath">
+    <path refid="${module.jdk.classpath.ms_eo_rechner}"/>
+    <pathelement location="${ms_eo_rechner.output.dir}"/>
+  </path>
+  
+  <path id="ms_eo_rechner.runtime.module.classpath">
+    <pathelement location="${ms_eo_rechner.testoutput.dir}"/>
+    <pathelement location="${ms_eo_rechner.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.ms_eo_rechner">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.ms_eo_rechner">
+    <patternset refid="excluded.from.module.ms_eo_rechner"/>
+  </patternset>
+  
+  <path id="ms_eo_rechner.module.sourcepath">
+    <dirset dir="${module.ms_eo_rechner.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.ms_eo_rechner" depends="compile.module.ms_eo_rechner.production,compile.module.ms_eo_rechner.tests" description="Compile module MS_EO_RECHNER"/>
+  
+  <target name="compile.module.ms_eo_rechner.production" depends="register.custom.compilers" description="Compile module MS_EO_RECHNER; production classes">
+    <mkdir dir="${ms_eo_rechner.output.dir}"/>
+    <javac2 destdir="${ms_eo_rechner.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ms_eo_rechner}/javac">
+      <compilerarg line="${compiler.args.ms_eo_rechner}"/>
+      <bootclasspath refid="ms_eo_rechner.module.bootclasspath"/>
+      <classpath refid="ms_eo_rechner.module.production.classpath"/>
+      <src refid="ms_eo_rechner.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ms_eo_rechner"/>
+    </javac2>
+    
+    <copy todir="${ms_eo_rechner.output.dir}">
+      <fileset dir="${module.ms_eo_rechner.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.ms_eo_rechner.tests" depends="register.custom.compilers,compile.module.ms_eo_rechner.production" description="compile module MS_EO_RECHNER; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.ms_eo_rechner" description="cleanup module">
+    <delete dir="${ms_eo_rechner.output.dir}"/>
+    <delete dir="${ms_eo_rechner.testoutput.dir}"/>
+  </target>
+</project>
