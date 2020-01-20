@@ -93,11 +93,11 @@ public class userinterface {
         //System.out.println(doubleArray[0].length);
 //		for(int i=0;i<doubleArray[0].length;i++)
         //	{
-        for (int z = 0; z < doubleArray[1].length; z++) {
+       /* for (int z = 0; z < doubleArray[1].length; z++) {
             if (doubleArray[1][z] == 2) {
                 System.out.println(doubleArray[0][z] + "	" + doubleArray[1][z]);
             }
-        }
+        }*/
         //}
     }
 
@@ -280,10 +280,7 @@ public class userinterface {
             pr = 0;
         }
         int[] ausgabe = new int[4];
-        ausgabe[0] = ergebnis;
-        ausgabe[1] = doppelt;
-        ausgabe[2] = nop;
-        ausgabe[3] = eindeutig;
+
         return ausgabe;
     }
 
