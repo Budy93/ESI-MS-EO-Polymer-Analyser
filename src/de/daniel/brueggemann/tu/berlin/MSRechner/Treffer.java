@@ -43,4 +43,14 @@ public class Treffer {
     private int Doppelt;
     private int KeinTreffer;
     private int eindeutig;
+
+    public int getMesswerte() {
+        return Messwerte;
+    }
+
+    public void setMesswerte(int messwerte) {
+        Messwerte = messwerte;
+    }
+
+    private int Messwerte;
 }

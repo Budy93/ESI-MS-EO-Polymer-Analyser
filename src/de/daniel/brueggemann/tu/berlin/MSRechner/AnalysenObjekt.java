@@ -63,14 +63,15 @@ public class AnalysenObjekt
 	 */
 	public void setAnalysenObjekt(int[] TrefferID, double[] mZahl, double[] mKorriergiert, double[] relativwert, double[] eoWert, int[] IonenLadung, double[] IonenCharge, String[] Korrektur, int[] korrekturWertID)
 	{
+		this.TrefferID = TrefferID;
 		this.mZahl = mZahl;
 		this.mKorriergiert = mKorriergiert;
 		this.relativwert = relativwert;
 		this.eoWert = eoWert;
-		this.IonenLadung=IonenLadung;
-		this.IonenCharge=IonenCharge;
-		this.Korrektur=Korrektur;
-		this.korrekturWertID=korrekturWertID;
+		this.IonenLadung = IonenLadung;
+		this.IonenCharge = IonenCharge;
+		this.Korrektur = Korrektur;
+		this.korrekturWertID = korrekturWertID;
 	}
 	/**
 	 * @param mZahl the mZahl to set

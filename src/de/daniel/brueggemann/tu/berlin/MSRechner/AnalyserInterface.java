@@ -52,7 +52,7 @@ public interface AnalyserInterface
 	 * @return
 	 */
 	AnalysenObjekt esikorrekturObject(Messdaten messdaten, Treffer treffer, boolean laurin, boolean dodecanol, boolean eo);
-	
+
 	/**
 	 * @param messdaten
 	 * @param treffer
@@ -63,6 +63,6 @@ public interface AnalyserInterface
 	 */
 	AnalysenObjekt esiNurkleinsteEOObject(Messdaten messdaten, Treffer treffer, boolean laurin, boolean dodecanol, boolean eo);
 
-	Treffer anzahlErgebnisse(Messdaten messdaten);
+	Treffer anzahlErgebnisse(Messdaten messdaten, boolean laurin, boolean dodecanol, boolean eo);
 
 }
