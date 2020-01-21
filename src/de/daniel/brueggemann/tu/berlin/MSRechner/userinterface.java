@@ -36,10 +36,17 @@ public class userinterface {
     public static AnalysenObjekt ana = new AnalysenObjekt();
     public static Messdaten messdaten = new Messdaten();
 
+
     //public final static String dateiName = "C:\\Users\\Daniel\\eclipse-workspace\\MS_EO_RECHNER\\src\\de\\daniel\\brueggemann\\tu\\berlin\\MSRechner\\test.txt";
     public static void main(String[] args) {
+        Einleser ein = new EinleserImpl();
+        System.out.println("BITTE GEBEN SIE DEN PROBEN NAMEN AN:");
+        String Probenname = ein.Stringeinleser();
         String Filename = "test.txt";
         String dateiName = System.getProperty("user.home") + "\\Desktop\\" + Filename;
+        String AusgabeDatei = System.getProperty("user.home") + "\\Desktop\\" + Probenname;
+        System.out.println("Wurde mit Natrium gearbeitet true or false?");
+        KorrekturwerteDaten.setNatrium(ein.JaoderNein());
         String[] Hase = dateiToArray(dateiName);
         double[] mzZahl = new double[Hase.length];
         double[] intensitaet = new double[Hase.length];
@@ -73,18 +80,20 @@ public class userinterface {
         double[] MSwerte = mzZahl;
         //{ 227.20, 289.24, 333.26, 355.25, 399.31, 443.34, 531.39, 575.41, 619.44, 663.47, 707.49,
         //	751.52, 795.55, 839.57, 883.60, 927.62, 971.65, 1059.70, 1103.73, 1191.78 };
-        int[] ergebnisausdruck = anzahlErgebnisse(MSwerte);
-        analyse(MSwerte);
-        ana.setmZahl(MSwerte);
-        ana.setRelativwert(relativ);
-        double[] eo = {1, 2, 3, 4, 5, 6, 7, 8};
-        ana.setEoWert(eo);
-        ana.setIonenCharge(IonenCharge);
-        ana.setIonenLadung(IonenLadung);
-        ana.setmKorriergiert(null);
-        ana.setKorrektur(IonName);
-        ana.setmKorriergiert(MSwerte);
+        int[] ergebnisausdruck = new int[4];
+        AnalyserInterface analy = new AnalyseImplementierung();
+        Treffer treffer = new Treffer();
+        treffer = analy.anzahlErgebnisse(messdaten, true, false, true);
+        ergebnisausdruck[0] = treffer.getTreffer();
+        ergebnisausdruck[1] = treffer.getDoppelt();
+        ergebnisausdruck[2] = treffer.getKeinTreffer();
+        ergebnisausdruck[3] = treffer.getEindeutig();
         System.out.println("Es wurden " + MSwerte.length + " ausgewerte dabei wurden " + ergebnisausdruck[0] + " Treffer gefunden, davon waren " + ergebnisausdruck[1] + " doppelt. Eindeutige einzelltreffer waren: " + ergebnisausdruck[3] + " Nichts wurde gefunden bei " + ergebnisausdruck[2]);
+        ana = analy.esikorrekturObject(messdaten, treffer, true, false, true);
+        for (int i = 0; i < ana.getTrefferID().length; i++) {
+            System.out.println(ana.getKorrektur()[i]);
+        }
+        //analyse(MSwerte);
         double[] hf = ana.getmKorriergiert();
         System.out.println(hf[2]);
         int[][] doubleArray = new int[][]{{1, 6, 16, 20, 5, 6}, {1, 3, 2, 2, 9, 3}};
@@ -93,12 +102,19 @@ public class userinterface {
         //System.out.println(doubleArray[0].length);
 //		for(int i=0;i<doubleArray[0].length;i++)
         //	{
-        for (int z = 0; z < doubleArray[1].length; z++) {
+       /* for (int z = 0; z < doubleArray[1].length; z++) {
             if (doubleArray[1][z] == 2) {
                 System.out.println(doubleArray[0][z] + "	" + doubleArray[1][z]);
             }
-        }
+        }*/
         //}
+        Filewriter file = new FilewriterImpl();
+        boolean erfolg = file.writtereport(AusgabeDatei, null, treffer, ana);
+        if (erfolg == true) {
+            System.out.println("Datei Geschrieben");
+        } else {
+            System.out.println("Fehler beim Schreiben der Daten");
+        }
     }
 
     private static void analyse(double[] MSwerte) {
@@ -280,10 +296,7 @@ public class userinterface {
             pr = 0;
         }
         int[] ausgabe = new int[4];
-        ausgabe[0] = ergebnis;
-        ausgabe[1] = doppelt;
-        ausgabe[2] = nop;
-        ausgabe[3] = eindeutig;
+
         return ausgabe;
     }
 
