@@ -343,12 +343,12 @@ public class AnalyseImplementierung implements AnalyserInterface {
     }
 
     @Override
-    public Tensid charakteristikKorregiert(String probename, AnalysenObjekt analysenObjekt) {
+    public Tensid charakteristikKorregiert(String probename, double CO2GehaltinProzent, AnalysenObjekt analysenObjekt) {
         return null;
     }
 
     @Override
-    public Tensid charakterisierung(String probenname, Messdaten messdaten) {
+    public Tensid charakterisierung(String probenname, double CO2GehaltinProzent, Messdaten messdaten) {
         return null;
     }
 
