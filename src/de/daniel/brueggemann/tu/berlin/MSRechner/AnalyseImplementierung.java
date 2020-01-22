@@ -73,7 +73,6 @@ public class AnalyseImplementierung implements AnalyserInterface {
         String[] IonName = KorrekturwerteDaten.getIonname();
         int[] IonenLadung = KorrekturwerteDaten.getIonenladung();
         AnalysenObjekt ana = new AnalysenObjekt();
-
         /// TODO: 21.01.2020
         int laenge = treffer.getTreffer() + treffer.getKeinTreffer();
         System.out.println(laenge);
@@ -342,14 +341,22 @@ public class AnalyseImplementierung implements AnalyserInterface {
         return treffer;
     }
 
+    //TODO DRINGEND ZU MACHEN
     @Override
     public Tensid charakteristikKorregiert(String probename, double CO2GehaltinProzent, AnalysenObjekt analysenObjekt) {
         return null;
     }
 
+    //TODO AUCH DRINGEND
     @Override
     public Tensid charakterisierung(String probenname, double CO2GehaltinProzent, Messdaten messdaten) {
         return null;
+    }
+
+    //TODO Heute Abend machen
+    @Override
+    public double selectivität(Tensid tensid, boolean laurinsauere, boolean dodecanol, boolean eo) {
+        return 0;
     }
 
 

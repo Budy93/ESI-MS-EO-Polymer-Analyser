@@ -96,4 +96,28 @@ public class FilewriterImpl implements Filewriter {
             return erfolg;
         }
     }
+
+    public boolean writteDate(String filename, String[] daten) {
+        boolean erfolg = false;
+        PrintWriter pW = null;
+        try {
+            pW = new PrintWriter(new FileWriter(filename, true));
+
+            pW.println("Auswertung für: " + filename);
+            for (int i = 0; i < daten.length; i++) {
+                pW.println(daten[i]);
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            erfolg = false;
+        } finally {
+            //PrintWriter pWriter = null;
+            if (pW != null) {
+                pW.flush();
+                pW.close();
+                erfolg = true;
+            }
+        }
+        return erfolg;
+    }
 }

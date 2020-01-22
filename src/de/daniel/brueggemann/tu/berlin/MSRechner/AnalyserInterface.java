@@ -109,4 +109,6 @@ public interface AnalyserInterface
 	 */
 	Tensid charakterisierung(String probenname, double CO2GehaltinProzent, Messdaten messdaten);
 
+	double selectivität(Tensid tensid, boolean laurinsauere, boolean dodecanol, boolean eo);
+
 }
