@@ -342,6 +342,18 @@ public class AnalyseImplementierung implements AnalyserInterface {
         return treffer;
     }
 
+    @Override
+    public Tensid charakteristikKorregiert(String probename, AnalysenObjekt analysenObjekt) {
+        return null;
+    }
+
+    @Override
+    public Tensid charakterisierung(String probenname, Messdaten messdaten) {
+        return null;
+    }
+
+
+
     /* (non-Javadoc)
      * @see de.daniel.brueggemann.tu.berlin.MSRechner.AnalyserInterface#esikorrekturObject(double[], double[], int, int, boolean, boolean, boolean)
     @Override

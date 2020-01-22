@@ -47,6 +47,9 @@ public class userinterface {
         String AusgabeDatei = System.getProperty("user.home") + "\\Desktop\\" + Probenname;
         System.out.println("Wurde mit Natrium gearbeitet true or false?");
         KorrekturwerteDaten.setNatrium(ein.JaoderNein());
+        ///TO-DO
+
+
         String[] Hase = dateiToArray(dateiName);
         double[] mzZahl = new double[Hase.length];
         double[] intensitaet = new double[Hase.length];
@@ -117,7 +120,7 @@ public class userinterface {
         }
     }
 
-    private static void analyse(double[] MSwerte) {
+    /*private static void analyse(double[] MSwerte) {
         int pr = 0;
         int dr = 0;
         for (int z = 0; z < MSwerte.length; z++) {
@@ -212,11 +215,11 @@ public class userinterface {
                 double Laurinsaure = LaurinsaeureE / 44;
                 // System.out.println(Test+" "+LaurinsaeureE+" "+Laurinsaure);
                 if (Laurinsaure % 1 == 0) {
-					/*
+					*//*
 					System.out.println(Eingabewert + " Treffer auf Laurinsäurebasis " + "Das Ion ist " + IonName[b]
 							+ " mit der Ionnen Masse ist: " + IonenPossitiv[b] + " Ladung ist " + IonenLadung[b]
 							+ " Die Anzahl der EO Einheiten ist " + Laurinsaure);
-							*/
+							*//*
                     ergebnis++;
                     pr++;
                 }
@@ -236,11 +239,11 @@ public class userinterface {
                 double Laurinsaure = LaurinsaeureE / 44;
                 // System.out.println(Test+" "+LaurinsaeureE+" "+Laurinsaure);
                 if (Laurinsaure % 1 == 0) {
-					/*
+					*//*
 					System.out.println(Eingabewert + " Treffer auf Dodecanolbasis " + "Das Ion ist " + IonName[b]
 							+ " mit der Ionnen Masse ist: " + IonenPossitiv[b] + " Ladung ist " + IonenLadung[b]
 							+ " Die Anzahl der EO Einheiten ist " + Laurinsaure);
-							*/
+							*//*
                     ergebnis++;
                     pr++;
                 }
@@ -262,11 +265,11 @@ public class userinterface {
                 double Laurinsaure = LaurinsaeureE / 44;
                 // System.out.println(Test+" "+LaurinsaeureE+" "+Laurinsaure);
                 if (Laurinsaure % 1 == 0) {
-					/*
+					*//*
 					System.out.println(Eingabewert + " Treffer auf EO " + "Das Ion ist " + IonName[b]
 							+ " mit der Ionnen Masse ist: " + IonenPossitiv[b] + " Ladung ist " + IonenLadung[b]
 							+ " Die Anzahl der EO Einheiten ist " + Laurinsaure);
-							*/
+							*//*
                     ergebnis++;
                     pr++;
                 }
@@ -298,7 +301,7 @@ public class userinterface {
         int[] ausgabe = new int[4];
 
         return ausgabe;
-    }
+    }*/
 
     /**
      * Rundet den übergebenen Wert auf die Anzahl der übergebenen Nachkommastellen

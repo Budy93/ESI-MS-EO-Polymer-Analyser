@@ -4,8 +4,9 @@
 package de.daniel.brueggemann.tu.berlin.MSRechner;
 
 /**
- * @author Daniel
+ * The interface Analyser interface.
  *
+ * @author Daniel
  */
 public interface AnalyserInterface
 {
@@ -15,13 +16,16 @@ public interface AnalyserInterface
 	 * relativit�t
 	 * EO anzahl korrektur(index 2
 	 */
+
 	/**
-	 * @param messdaten
-	 * @param treffer
-	 * @param laurin
-	 * @param dodecanol
-	 * @param eo
-	 * @return
+	 * Esikorrektur double [ ] [ ] [ ] [ ] [ ].
+	 *
+	 * @param messdaten the messdaten
+	 * @param treffer   the treffer
+	 * @param laurin    the laurin
+	 * @param dodecanol the dodecanol
+	 * @param eo        the eo
+	 * @return double [ ] [ ] [ ] [ ] [ ]
 	 */
 	double[][][][][] esikorrektur(Messdaten messdaten, Treffer treffer, boolean laurin, boolean dodecanol, boolean eo);
 	
@@ -31,38 +35,78 @@ public interface AnalyserInterface
 	 * relativit�t
 	 * EO anzahl korrektur(index 2
 	 */
+
 	/**
-	 * @param messdaten
-	 * @param treffer
-	 * @param laurin
-	 * @param dodecanol
-	 * @param eo
-	 * @return
+	 * Esi nurkleinste eo double [ ] [ ] [ ] [ ] [ ].
+	 *
+	 * @param messdaten the messdaten
+	 * @param treffer   the treffer
+	 * @param laurin    the laurin
+	 * @param dodecanol the dodecanol
+	 * @param eo        the eo
+	 * @return double [ ] [ ] [ ] [ ] [ ]
 	 */
 	double[][][][][] esiNurkleinsteEO(Messdaten messdaten, Treffer treffer, boolean laurin, boolean dodecanol, boolean eo);
-	
-	String[] artderkorrektur(int[] korrektur);
-	
+
 	/**
-	 * @param messdaten
-	 * @param treffer
-	 * @param laurin
-	 * @param dodecanol
-	 * @param eo
-	 * @return
+	 * Artderkorrektur string [ ].
+	 *
+	 * @param korrektur the korrektur
+	 * @return the string [ ]
+	 */
+	String[] artderkorrektur(int[] korrektur);
+
+	/**
+	 * Esikorrektur object analysen objekt.
+	 *
+	 * @param messdaten the messdaten
+	 * @param treffer   the treffer
+	 * @param laurin    the laurin
+	 * @param dodecanol the dodecanol
+	 * @param eo        the eo
+	 * @return analysen objekt
 	 */
 	AnalysenObjekt esikorrekturObject(Messdaten messdaten, Treffer treffer, boolean laurin, boolean dodecanol, boolean eo);
 
 	/**
-	 * @param messdaten
-	 * @param treffer
-	 * @param laurin
-	 * @param dodecanol
-	 * @param eo
-	 * @return
+	 * Esi nurkleinste eo object analysen objekt.
+	 *
+	 * @param messdaten the messdaten
+	 * @param treffer   the treffer
+	 * @param laurin    the laurin
+	 * @param dodecanol the dodecanol
+	 * @param eo        the eo
+	 * @return analysen objekt
 	 */
 	AnalysenObjekt esiNurkleinsteEOObject(Messdaten messdaten, Treffer treffer, boolean laurin, boolean dodecanol, boolean eo);
 
+	/**
+	 * Anzahl ergebnisse treffer.
+	 *
+	 * @param messdaten the messdaten
+	 * @param laurin    the laurin
+	 * @param dodecanol the dodecanol
+	 * @param eo        the eo
+	 * @return the treffer
+	 */
 	Treffer anzahlErgebnisse(Messdaten messdaten, boolean laurin, boolean dodecanol, boolean eo);
+
+	/**
+	 * Charakteristik korregiert tensid.
+	 *
+	 * @param probename      the probename
+	 * @param analysenObjekt the analysen objekt
+	 * @return the tensid
+	 */
+	Tensid charakteristikKorregiert(String probename, AnalysenObjekt analysenObjekt);
+
+	/**
+	 * Charakterisierung tensid.
+	 *
+	 * @param probenname the probenname
+	 * @param messdaten  the messdaten
+	 * @return the tensid
+	 */
+	Tensid charakterisierung(String probenname, Messdaten messdaten);
 
 }
