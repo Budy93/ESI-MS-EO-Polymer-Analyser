@@ -88,20 +88,20 @@ public class userinterface {
         int[] ergebnisausdruck = new int[4];
         AnalyserInterface analy = new AnalyseImplementierung();
         Treffer treffer = new Treffer();
-        treffer = analy.anzahlErgebnisse(messdaten, true, true, true);
+        treffer = analy.anzahlErgebnisse(messdaten, true, false, true);
         ergebnisausdruck[0] = treffer.getTreffer();
         ergebnisausdruck[1] = treffer.getDoppelt();
         ergebnisausdruck[2] = treffer.getKeinTreffer();
         ergebnisausdruck[3] = treffer.getEindeutig();
         System.out.println("Es wurden " + MSwerte.length + " ausgewerte dabei wurden " + ergebnisausdruck[0] + " Treffer gefunden, davon waren " + ergebnisausdruck[1] + " doppelt. Eindeutige einzelltreffer waren: " + ergebnisausdruck[3] + " Nichts wurde gefunden bei " + ergebnisausdruck[2]);
-        ana = analy.esikorrekturObject(messdaten, treffer, true, true, true);
+        ana = analy.esikorrekturObject(messdaten, treffer, true, false, true);
         for (int i = 0; i < ana.getTrefferID().length; i++) {
             System.out.println(ana.getKorrektur()[i]);
         }
         //analyse(MSwerte);
-        double[] hf = ana.getmKorriergiert();
-        System.out.println(hf[2]);
-        int[][] doubleArray = new int[][]{{1, 6, 16, 20, 5, 6}, {1, 3, 2, 2, 9, 3}};
+        //double[] hf = ana.getmKorriergiert();
+        //System.out.println(hf[2]);
+        //int[][] doubleArray = new int[][]{{1, 6, 16, 20, 5, 6}, {1, 3, 2, 2, 9, 3}};
         //System.out.println(doubleArray[0][4]);
         //System.out.println(doubleArray[1][4]);
         //System.out.println(doubleArray[0].length);
@@ -116,6 +116,8 @@ public class userinterface {
         Filewriter file = new FilewriterImpl();
         Tensid tensid = new Tensid();
         tensid = analy.charakterisierung(Probenname, CO2GehaltinProzent, messdaten, true, false);
+        Tensid tensidzwich = new Tensid();
+        tensidzwich = analy.charakteristikKorregiert(Probenname, CO2GehaltinProzent, ana, true, false);
         boolean erfolg = file.writtereport(AusgabeDatei, tensid, treffer, ana);
         if (erfolg == true) {
             System.out.println("Datei Geschrieben");

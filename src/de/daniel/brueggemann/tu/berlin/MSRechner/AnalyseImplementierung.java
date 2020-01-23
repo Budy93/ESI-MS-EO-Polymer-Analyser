@@ -4,6 +4,7 @@
 package de.daniel.brueggemann.tu.berlin.MSRechner;
 
 import java.lang.management.MemoryNotificationInfo;
+import java.util.ArrayList;
 
 /**
  * The type Analyse implementierung.
@@ -347,8 +348,23 @@ public class AnalyseImplementierung implements AnalyserInterface {
     @Override
     public Tensid charakteristikKorregiert(String probename, double CO2GehaltinProzent, AnalysenObjekt analysenObjekt, boolean laurin, boolean dodecanol) {
         Tensid tensid = new Tensid();
-        double[] mzZhal = analysenObjekt.getmZahl();
-        double[] relativ = analysenObjekt.getRelativwert();
+        double[] parken = analysenObjekt.getmZahl();
+        double[] parkenRel = analysenObjekt.getRelativwert();
+        ArrayList<Double> list = new ArrayList<Double>();
+        ArrayList<Double> rel = new ArrayList<Double>();
+        for (int i = 0; i < parken.length; i++) {
+            if (parkenRel[i] >= 1) {
+                list.add(parken[i]);
+                rel.add(parkenRel[i]);
+            }
+        }
+        double[] mzZhal = new double[list.size()];
+        double[] relativ = new double[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            mzZhal[i] = list.get(i);
+            relativ[i] = rel.get(i);
+        }
+
         String[] ausgabe = new String[mzZhal.length + 4];
         double[] xi = new double[mzZhal.length];
         double[] xiMI = new double[mzZhal.length];
