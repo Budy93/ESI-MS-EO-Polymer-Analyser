@@ -42,9 +42,10 @@ public class userinterface {
         Einleser ein = new EinleserImpl();
         System.out.println("BITTE GEBEN SIE DEN PROBEN NAMEN AN:");
         String Probenname = ein.Stringeinleser();
-        String Filename = "test.txt";
+        String Filename = Probenname + ".txt";
         String dateiName = System.getProperty("user.home") + "\\Desktop\\" + Filename;
         String AusgabeDatei = System.getProperty("user.home") + "\\Desktop\\" + Probenname;
+        //+ Probenname+"\\"
         System.out.println("Wurde mit Natrium gearbeitet true or false?");
         KorrekturwerteDaten.setNatrium(ein.JaoderNein());
         System.out.println("Wie viel Co2 hat die Probe in Prozent?");
@@ -124,6 +125,31 @@ public class userinterface {
         } else {
             System.out.println("Fehler beim Schreiben der Daten");
         }
+        AnalysenObjekt ane = new AnalysenObjekt();
+        ane = analy.esikorrekturEindeutig(messdaten, treffer, true, false, true);
+        /*
+        try{
+            ane=analy.esikorrekturEindeutig(messdaten,treffer,true,false,true);
+        }catch (Exception e) {
+            System.out.println("Kann Eindeutige Objekte nicht bekommen");
+            System.out.println();
+            System.out.println(e);
+        }
+        */
+        Tensid eindeutigesTensid = new Tensid();
+        String[] eindeutigeReport = analy.CharalterAusgabe(Probenname, CO2GehaltinProzent, ane, true, false);
+        eindeutigesTensid = analy.getTens();
+        Boolean eindeutigReo = file.writteDate(AusgabeDatei + "_EindeutigeCharckter.txt", eindeutigeReport);
+        if (eindeutigReo != true) {
+            System.out.println("Fehler beim Schreiben der Daten");
+        }
+        String[] eindeutigeReportRel = analy.CharalterAusgabeRel(Probenname, CO2GehaltinProzent, ane, true, false);
+        Boolean eindeutigReoRL = file.writteDate(AusgabeDatei + "_EindeutigeCharckterRelativ.txt", eindeutigeReportRel);
+        if (eindeutigReoRL != true) {
+            System.out.println("Fehler beim Schreiben der Daten");
+        }
+        //eindeutigesTensid=analy.
+
         System.out.println("Es wurden " + MSwerte.length + " ausgewerte dabei wurden " + ergebnisausdruck[0] + " Treffer gefunden, davon waren " + ergebnisausdruck[1] + " doppelt. Eindeutige einzelltreffer waren: " + ergebnisausdruck[3] + " Nichts wurde gefunden bei " + ergebnisausdruck[2]);
     }
 

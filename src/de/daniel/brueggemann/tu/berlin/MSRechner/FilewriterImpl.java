@@ -67,7 +67,7 @@ public class FilewriterImpl implements Filewriter {
         Boolean keineTreffer = writteDate(filename + "_Keine_Treffer.txt", keinetreffer);
 
         for (int i = 0; i < relevanteKeinetreffer.length; i++) {
-            if (relevanteKeinetrefferRela[i] >= 5.00) {
+            if (relevanteKeinetrefferRela[i] >= 1.00) {
                 list.add(relevanteKeinetreffer[i] + " " + relevanteKeinetrefferMzahl[i] + " " + relevanteKeinetrefferRela[i]);
             }
         }

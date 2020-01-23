@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MS_EO_RECHNER:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MS_EO_RECHNER_jar</output-path>
+    <root id="archive" name="MS_EO_RECHNER.jar">
+      <element id="module-output" name="MS_EO_RECHNER" />
+    </root>
+  </artifact>
+</component>

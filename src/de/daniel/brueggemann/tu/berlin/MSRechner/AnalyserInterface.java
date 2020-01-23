@@ -111,4 +111,12 @@ public interface AnalyserInterface
 
 	double selectivität(Tensid tensid, boolean laurinsauere, boolean dodecanol, boolean eo);
 
+	public AnalysenObjekt esikorrekturEindeutig(Messdaten messdaten, Treffer treffer, boolean laurin, boolean dodecanol, boolean eo);
+
+	public String[] CharalterAusgabeRel(String probename, double CO2GehaltinProzent, AnalysenObjekt analysenObjekt, boolean laurin, boolean dodecanol);
+
+	public String[] CharalterAusgabe(String probename, double CO2GehaltinProzent, AnalysenObjekt analysenObjekt, boolean laurin, boolean dodecanol);
+
+	public Tensid getTens();
+
 }
