@@ -523,7 +523,7 @@ public class AnalyseImplementierung implements AnalyserInterface {
             speicher++;
         }
         Filewriter file = new FilewriterImpl();
-        Boolean schreiben = file.writteDate(System.getProperty("user.home") + "\\Desktop\\" + probenname + "_Charakter_Daten.txt", ausgabe);
+        Boolean schreiben = file.writteDate(System.getProperty("user.home") + "\\Desktop\\" + probenname + "_Charakter_Daten_unkorrigiert.txt", ausgabe);
         // + probenname +"\\"
         if (schreiben != true) {
             System.out.println("Fehler beim niederschreiben der Charakterdaten");

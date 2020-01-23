@@ -16,22 +16,34 @@
   </path>
   
   <path id="ms_eo_rechner.module.production.classpath">
-    <path refid="${module.jdk.classpath.ms_eo_rechner}"/>
+      <path refid="${module.jdk.classpath.ms_eo_rechner}"/>
+      <fileset dir="${basedir}/../../IdeaProjects/jfreechart-1.0.19/lib">
+          <patternset refid="library.patterns"/>
+      </fileset>
   </path>
-  
-  <path id="ms_eo_rechner.runtime.production.module.classpath">
-    <pathelement location="${ms_eo_rechner.output.dir}"/>
-  </path>
-  
-  <path id="ms_eo_rechner.module.classpath">
-    <path refid="${module.jdk.classpath.ms_eo_rechner}"/>
-    <pathelement location="${ms_eo_rechner.output.dir}"/>
-  </path>
-  
-  <path id="ms_eo_rechner.runtime.module.classpath">
-    <pathelement location="${ms_eo_rechner.testoutput.dir}"/>
-    <pathelement location="${ms_eo_rechner.output.dir}"/>
-  </path>
+
+    <path id="ms_eo_rechner.runtime.production.module.classpath">
+        <pathelement location="${ms_eo_rechner.output.dir}"/>
+        <fileset dir="${basedir}/../../IdeaProjects/jfreechart-1.0.19/lib">
+            <patternset refid="library.patterns"/>
+        </fileset>
+    </path>
+
+    <path id="ms_eo_rechner.module.classpath">
+        <path refid="${module.jdk.classpath.ms_eo_rechner}"/>
+        <pathelement location="${ms_eo_rechner.output.dir}"/>
+        <fileset dir="${basedir}/../../IdeaProjects/jfreechart-1.0.19/lib">
+            <patternset refid="library.patterns"/>
+        </fileset>
+    </path>
+
+    <path id="ms_eo_rechner.runtime.module.classpath">
+        <pathelement location="${ms_eo_rechner.testoutput.dir}"/>
+        <pathelement location="${ms_eo_rechner.output.dir}"/>
+        <fileset dir="${basedir}/../../IdeaProjects/jfreechart-1.0.19/lib">
+            <patternset refid="library.patterns"/>
+        </fileset>
+    </path>
   
   
   <patternset id="excluded.from.module.ms_eo_rechner">
