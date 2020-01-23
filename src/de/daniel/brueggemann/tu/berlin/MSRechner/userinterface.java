@@ -31,11 +31,11 @@ public class userinterface {
     public final static double MPHK = 19.985217;
     private boolean LaurinsauerePR = true;
     private boolean EOPR = true;
-    private boolean DodecanolPR = true;
+    private boolean DodecanolPR = false;
     private boolean Natrium = false;
     public static AnalysenObjekt ana = new AnalysenObjekt();
     public static Messdaten messdaten = new Messdaten();
-
+    public static final double version = 0.1;
 
     //public final static String dateiName = "C:\\Users\\Daniel\\eclipse-workspace\\MS_EO_RECHNER\\src\\de\\daniel\\brueggemann\\tu\\berlin\\MSRechner\\test.txt";
     public static void main(String[] args) {
@@ -47,7 +47,8 @@ public class userinterface {
         String AusgabeDatei = System.getProperty("user.home") + "\\Desktop\\" + Probenname;
         //+ Probenname+"\\"
         System.out.println("Wurde mit Natrium gearbeitet true or false?");
-        KorrekturwerteDaten.setNatrium(ein.JaoderNein());
+        Boolean natrium = ein.JaoderNein();
+        KorrekturwerteDaten.setNatrium(natrium);
         System.out.println("Wie viel Co2 hat die Probe in Prozent?");
         double CO2GehaltinProzent = ein.doublereader();
         ///TO-DO
@@ -94,7 +95,8 @@ public class userinterface {
         ergebnisausdruck[1] = treffer.getDoppelt();
         ergebnisausdruck[2] = treffer.getKeinTreffer();
         ergebnisausdruck[3] = treffer.getEindeutig();
-        System.out.println("Es wurden " + MSwerte.length + " ausgewerte dabei wurden " + ergebnisausdruck[0] + " Treffer gefunden, davon waren " + ergebnisausdruck[1] + " doppelt. Eindeutige einzelltreffer waren: " + ergebnisausdruck[3] + " Nichts wurde gefunden bei " + ergebnisausdruck[2]);
+        String ausage = "Es wurden " + MSwerte.length + " ausgewerte dabei wurden " + ergebnisausdruck[0] + " Treffer gefunden, davon waren " + ergebnisausdruck[1] + " doppelt. Eindeutige einzelltreffer waren: " + ergebnisausdruck[3] + " Nichts wurde gefunden bei " + ergebnisausdruck[2];
+        System.out.println(ausage);
         ana = analy.esikorrekturObject(messdaten, treffer, true, false, true);
         for (int i = 0; i < ana.getTrefferID().length; i++) {
             System.out.println(ana.getKorrektur()[i]);
@@ -116,9 +118,11 @@ public class userinterface {
         //}
         Filewriter file = new FilewriterImpl();
         Tensid tensid = new Tensid();
+        //Gibt inkorrigiertes Tensid ohne ESI Korrektur zurück
         tensid = analy.charakterisierung(Probenname, CO2GehaltinProzent, messdaten, true, false);
-        Tensid tensidzwich = new Tensid();
-        tensidzwich = analy.charakteristikKorregiert(Probenname, CO2GehaltinProzent, ana, true, false);
+        Tensid tensidEORelevant = new Tensid();
+        //Gibt Relevante EO Tensid aus
+        tensidEORelevant = analy.charakteristikKorregiert(Probenname, CO2GehaltinProzent, ana, true, false);
         boolean erfolg = file.writtereport(AusgabeDatei, tensid, treffer, ana);
         if (erfolg == true) {
             System.out.println("Datei Geschrieben");
@@ -144,6 +148,8 @@ public class userinterface {
             System.out.println("Fehler beim Schreiben der Daten");
         }
         String[] eindeutigeReportRel = analy.CharalterAusgabeRel(Probenname, CO2GehaltinProzent, ane, true, false);
+        Tensid eindeutigesTensidRelevanteEO = new Tensid();
+        eindeutigesTensidRelevanteEO = analy.getTens();
         Boolean eindeutigReoRL = file.writteDate(AusgabeDatei + "_EindeutigeCharckterRelativ.txt", eindeutigeReportRel);
         if (eindeutigReoRL != true) {
             System.out.println("Fehler beim Schreiben der Daten");
@@ -151,6 +157,33 @@ public class userinterface {
         //eindeutigesTensid=analy.
 
         System.out.println("Es wurden " + MSwerte.length + " ausgewerte dabei wurden " + ergebnisausdruck[0] + " Treffer gefunden, davon waren " + ergebnisausdruck[1] + " doppelt. Eindeutige einzelltreffer waren: " + ergebnisausdruck[3] + " Nichts wurde gefunden bei " + ergebnisausdruck[2]);
+        //ausage
+        /*
+        Probe
+        Version
+        Bolleans
+        4 Tenside
+        letzter satz
+         */
+        String[] abschlussbericht = new String[16];
+        abschlussbericht[0] = "Ausgewertet wurde die Probe: " + Probenname;
+        abschlussbericht[2] = "Genutzte Programm Version: " + version;
+        abschlussbericht[4] = "Gesetzte Optionen Natrium: " + natrium + " Dodecanol: " + "false" + " Laurinsaeure: " + "TRUE" + " EO: " + "TRUE";
+        abschlussbericht[6] = Tensidzusammenfassung("Wurde keine Korrektur beachtet", tensid);
+        abschlussbericht[8] = Tensidzusammenfassung("Wurden nur Massenzahlen mit einer Relativitaet groesser 1 mit korrespondierender EO Zahl beachtet", tensidEORelevant);
+        abschlussbericht[10] = Tensidzusammenfassung("Wurde nur daten Beachet die einen eindeutigen EO Wert haben und keine mehrfach bedeutung.", eindeutigesTensid);
+        abschlussbericht[12] = Tensidzusammenfassung("Wurde nur daten Beachet die einen eindeutigen EO Wert haben und keine mehrfach bedeutung haben als auch Relativ mehr als 1 vorlagen.", eindeutigesTensidRelevanteEO);
+        abschlussbericht[14] = ausage;
+        Boolean lastreport = file.writteDate(AusgabeDatei + "_Abschluss.txt", abschlussbericht);
+        if (eindeutigReo != true) {
+            System.out.println("Fehler beim Schreiben der Daten");
+        }
+
+    }
+
+    public static String Tensidzusammenfassung(String bedeutung, Tensid tensid) {
+        String ausgabe = "Für die Auswertung " + bedeutung + " Ergaben sich folgende werte " + "Tenside: " + tensid.getName() + " Mn: " + tensid.getMN() + " Mw: " + tensid.getMW() + " PDI: " + tensid.getPDI() + " EOGruppen: " + tensid.getEO() + " CO2 Gruppen: " + tensid.getCO2() + " CO2 Gehalt: " + tensid.getCO2Gehalt() + " Selektivität CO2 ist: " + tensid.getSelectivitaet();
+        return ausgabe;
     }
 
     /*private static void analyse(double[] MSwerte) {

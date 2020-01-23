@@ -425,8 +425,8 @@ public class AnalyseImplementierung implements AnalyserInterface {
         }
         Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
         EO = EOpCO2 - Co2;
-        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent);
         double select = selectivität(tensid, laurin, dodecanol, false);
+        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, select);
         ausgabe[0] = "Tenside: " + probename + " Mn: " + Mn + " Mw: " + Mw + " PDI: " + PDI + " EOGruppen: " + EO + " CO2 Gruppen: " + Co2 + " CO2 Gehalt: " + CO2GehaltinProzent + " Selektivität CO2 ist: " + select;
         ausgabe[1] = "";
         ausgabe[2] = "Summe XI:" + KotrolleXI + " Summe WI" + KotrolleXI;
@@ -437,7 +437,7 @@ public class AnalyseImplementierung implements AnalyserInterface {
             speicher++;
         }
         Filewriter file = new FilewriterImpl();
-        Boolean schreiben = file.writteDate(System.getProperty("user.home") + "\\Desktop\\" + probename + "_Charakter_Daten_Kleinste_EO.txt", ausgabe);
+        Boolean schreiben = file.writteDate(System.getProperty("user.home") + "\\Desktop\\" + probename + "_Charakter_Daten_relevante_EO.txt", ausgabe);
         //probename +"\\"+
         if (schreiben != true) {
             System.out.println("Fehler beim niederschreiben der Charakterdaten");
@@ -510,8 +510,8 @@ public class AnalyseImplementierung implements AnalyserInterface {
         }
         Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
         EO = EOpCO2 - Co2;
-        tensid.Tenside(probenname, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent);
         double select = selectivität(tensid, laurin, dodecanol, false);
+        tensid.Tenside(probenname, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, select);
         ausgabe[0] = "Tenside: " + probenname + " Mn: " + Mn + " Mw: " + Mw + " PDI: " + PDI + " EOGruppen: " + EO + " CO2 Gruppen: " + Co2 + " CO2 Gehalt: " + CO2GehaltinProzent + " eine CO2 Selectivität von: " + select;
         System.out.println(ausgabe[0]);
         ausgabe[1] = "";
@@ -821,7 +821,6 @@ public class AnalyseImplementierung implements AnalyserInterface {
         }
         Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
         EO = EOpCO2 - Co2;
-        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent);
         double select = selectivität(tensid, laurin, dodecanol, false);
         ausgabe[0] = "Tenside: " + probename + " Mn: " + Mn + " Mw: " + Mw + " PDI: " + PDI + " EOGruppen: " + EO + " CO2 Gruppen: " + Co2 + " CO2 Gehalt: " + CO2GehaltinProzent + " Selektivität CO2 ist: " + select;
         ausgabe[1] = "";
@@ -838,7 +837,7 @@ public class AnalyseImplementierung implements AnalyserInterface {
         //if (schreiben != true) {
         //  System.out.println("Fehler beim niederschreiben der Charakterdaten");
         //}
-        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent);
+        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, select);
         setTens(tensid);
         return ausgabe;
     }
@@ -906,8 +905,8 @@ public class AnalyseImplementierung implements AnalyserInterface {
         }
         Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
         EO = EOpCO2 - Co2;
-        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent);
         double select = selectivität(tensid, laurin, dodecanol, false);
+        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, select);
         ausgabe[0] = "Tenside: " + probename + " Mn: " + Mn + " Mw: " + Mw + " PDI: " + PDI + " EOGruppen: " + EO + " CO2 Gruppen: " + Co2 + " CO2 Gehalt: " + CO2GehaltinProzent + " Selektivität CO2 ist: " + select;
         ausgabe[1] = "";
         ausgabe[2] = "Summe XI:" + KotrolleXI + " Summe WI" + KotrolleXI;

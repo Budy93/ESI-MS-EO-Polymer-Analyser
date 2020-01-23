@@ -12,6 +12,7 @@ public class Tensid {
     private double EO;
     private double CO2;
     private double CO2Gehalt;
+    private double selectivitaet;
 
     /**
      * Gets name.
@@ -150,7 +151,7 @@ public class Tensid {
      * @param co2       the co 2
      * @param co2Gehalt the co 2 gehalt
      */
-    public void Tenside(String name, double mw, double mn, double pdi, double eo, double co2, double co2Gehalt) {
+    public void Tenside(String name, double mw, double mn, double pdi, double eo, double co2, double co2Gehalt, double selectivitaet) {
         this.Name = name;
         this.MW = mw;
         this.MN = mn;
@@ -158,6 +159,14 @@ public class Tensid {
         this.EO = eo;
         this.CO2 = co2;
         this.CO2Gehalt = co2Gehalt;
+        this.selectivitaet = selectivitaet;
     }
 
+    public double getSelectivitaet() {
+        return selectivitaet;
+    }
+
+    public void setSelectivitaet(double selectivitaet) {
+        this.selectivitaet = selectivitaet;
+    }
 }
