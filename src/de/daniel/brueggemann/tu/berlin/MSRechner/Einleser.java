@@ -7,14 +7,16 @@ public interface Einleser {
      *
      * @return Integer
      */
-    public int Zahleinleser();
+    int Zahleinleser();
 
     /**
      * Liest einen bliebigen String ein.
      *
      * @return String
      */
-    public String Stringeinleser();
+    String Stringeinleser();
 
-    public Boolean JaoderNein();
+    Boolean JaoderNein();
+
+    double doublereader();
 }

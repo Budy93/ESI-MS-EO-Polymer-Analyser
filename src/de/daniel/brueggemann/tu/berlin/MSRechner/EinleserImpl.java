@@ -41,4 +41,9 @@ public class EinleserImpl implements Einleser {
         Scanner sc = new Scanner(System.in);
         return sc.nextBoolean();
     }
+
+    public double doublereader() {
+        Scanner sc = new Scanner(System.in);
+        return sc.nextDouble();
+    }
 }

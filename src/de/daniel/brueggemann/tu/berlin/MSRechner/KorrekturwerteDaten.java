@@ -10,21 +10,21 @@ package de.daniel.brueggemann.tu.berlin.MSRechner;
 public final class KorrekturwerteDaten {
 	private static double[] IonenPossitiv;
 	private final static double[] IonenPossitivONatrium = {1.007276, 19.985217, 21.520550, 42.033823, 62.547097,
-			1.007276, 33.033489, 38.963158, 42.033823, 76.919040, 83.060370, 1.007276, 28.02312, 38.963158};
+			1.007276, 33.033489, 38.963158, 42.033823, 76.919040, 83.060370, 1.007276, 28.02312, 38.963158, -1.007276, -1.007276, -19.01839, -1.007276, 36.948606, 59.013851, -1.007276, 59.013851, 1.007276};
 	private final static double[] IonenPossitivWNatrium = {1.007276, 19.985217, 21.520550, 22.989218, 42.033823, 62.547097,
 			1.007276, 22.989218, 33.033489, 38.963158, 42.033823, 44.971160, 64.015765, 76.919040, 83.060370, 1.007276,
-			22.989218, 28.02312, 38.963158};
+			22.989218, 28.02312, 38.963158, -1.007276, -1.007276, -19.01839, -1.007276, 36.948606, 59.013851, -1.007276, 59.013851, 1.007276};
 	private static int[] IonenLadung;
-	private static int[] IonenLadungWN = {2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1};
-	private static int[] IonenLadungON = {2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1};
+	private static int[] IonenLadungWN = {2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, -3, -2, -1, -1, -1, -1, -1, -1, -1};
+	private static int[] IonenLadungON = {2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, -3, -2, -1, -1, -1, -1, -1, -1, -1};
 	private static double[] IonenCharge;
-	private static double[] IonenChargeWN = {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2};
-	private static double[] IonenChargeON = {0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 2};
+	private static double[] IonenChargeWN = {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 0.333333333, 0.5, 1, 1, 1, 1, 2, 2, 3};
+	private static double[] IonenChargeON = {0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 2, 0.333333333, 0.5, 1, 1, 1, 1, 2, 2, 3};
 	private static String[] IonName;
 	private static String[] IonNameWN = {"M+2H", "M+H+K", "M+ACN+2H", "M+2Na", "M+2ACN+2H", "M+3ACN+2H", "M+H",
 			"M+Na", "M+CH3OH+H", "M+K", "M+ACN+H", "M+2Na-H", "M+ACN+Na", "M+2K+H", "M+2ACN+H", "2M+H", "2M+Na",
-			"2M+3H2O+2H", "2M+K"};
-	private static String[] IonNameON = {"M+2H", "M+H+K", "M+ACN+2H", "M+2ACN+2H", "M+3ACN+2H", "M+H", "M+CH3OH+H", "M+K", "M+ACN+H", "M+2K+H", "M+2ACN+H", "2M+H", "2M+3H2O+2H", "2M+K"};
+			"2M+3H2O+2H", "2M+K", "M-3H", "M-2H", "M-H2O-H", "M-H", "M+K-2H", "M+Hac-H", "2M-H", "2M+Hac-H", "3M-H"};
+	private static String[] IonNameON = {"M+2H", "M+H+K", "M+ACN+2H", "M+2ACN+2H", "M+3ACN+2H", "M+H", "M+CH3OH+H", "M+K", "M+ACN+H", "M+2K+H", "M+2ACN+H", "2M+H", "2M+3H2O+2H", "2M+K", "M-3H", "M-2H", "M-H2O-H", "M-H", "M+K-2H", "M+Hac-H", "2M-H", "2M+Hac-H", "3M-H"};
 	/**
 	 * 4,8,12,13,17
 	 * {2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1};
@@ -240,13 +240,13 @@ public final class KorrekturwerteDaten {
 			setIonenCharge(getIonenChargeWN());
 			setIonenLadung(getIonenLadungWN());
 			setIonName(getIonNameWN());
-			//System.out.println(IonenPossitiv.length+" "+IonName.length+" "+ IonenCharge.length+" "+IonenLadung.length);
+			System.out.println(IonenPossitiv.length + " " + IonName.length + " " + IonenCharge.length + " " + IonenLadung.length);
 		} else {
 			setIonenPossitiv(getIonenPossitivONatrium());
 			setIonenCharge(getIonenChargeON());
 			setIonenLadung(getIonenLadungON());
 			setIonName(getIonNameON());
-			//System.out.println(IonenPossitiv.length+" "+IonName.length+" "+ IonenCharge.length+" "+IonenLadung.length);
+			System.out.println(IonenPossitiv.length + " " + IonName.length + " " + IonenCharge.length + " " + IonenLadung.length);
 		}
 	}
 

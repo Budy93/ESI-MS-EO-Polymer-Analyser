@@ -1,9 +1,12 @@
 package de.daniel.brueggemann.tu.berlin.MSRechner;
 
+import com.sun.xml.internal.fastinfoset.algorithm.BooleanEncodingAlgorithm;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class FilewriterImpl implements Filewriter {
 
@@ -18,7 +21,14 @@ public class FilewriterImpl implements Filewriter {
         ergebnisausdruck[3] = treffer.getEindeutig();
         String auswertungsatz = "Es wurden " + treffer.getMesswerte() + " ausgewerte dabei wurden " + ergebnisausdruck[0] + " Treffer gefunden, davon waren " + ergebnisausdruck[1] + " doppelt. Eindeutige einzelltreffer waren: " + ergebnisausdruck[3] + " Nichts wurde gefunden bei " + ergebnisausdruck[2];
         Boolean erfolg = false;
-
+        String[] keinetreffer = new String[treffer.getKeinTreffer() + 1];
+        keinetreffer[0] = "TrefferID" + " " + "MZ" + " " + "Relativ";
+        int keineTrefferIndex = 1;
+        int relevant = 0;
+        double[] relevanteKeinetreffer = new double[treffer.getKeinTreffer()];
+        double[] relevanteKeinetrefferMzahl = new double[treffer.getKeinTreffer()];
+        double[] relevanteKeinetrefferRela = new double[treffer.getKeinTreffer()];
+        ArrayList<String> list = new ArrayList<String>();
         PrintWriter pWriter = null;
         try {
             pWriter = new PrintWriter(new FileWriter(filename + "_mZKorrigiert.txt", true));
@@ -31,6 +41,13 @@ public class FilewriterImpl implements Filewriter {
                     Ion = KorrekturwerteDaten.getIonname()[analysenObjekt.getKorrekturWertID()[i]];
                 } else {
                     Ion = "Keine_Korrektur_vorgenommen!!!!";
+                    String park = analysenObjekt.getTrefferID()[i] + " " + analysenObjekt.getmZahl()[i] + " " + analysenObjekt.getRelativwert()[i];
+                    relevanteKeinetreffer[relevant] = analysenObjekt.getTrefferID()[i];
+                    relevanteKeinetrefferMzahl[relevant] = analysenObjekt.getmZahl()[i];
+                    relevanteKeinetrefferRela[relevant] = analysenObjekt.getRelativwert()[i];
+                    relevant++;
+                    keinetreffer[keineTrefferIndex] = park;
+                    keineTrefferIndex++;
                 }
 
                 String ausgabe = analysenObjekt.getTrefferID()[i] + " " + analysenObjekt.getmZahl()[i] + " " + analysenObjekt.getmKorriergiert()[i] + " " + analysenObjekt.getRelativwert()[i] + " " + analysenObjekt.getEoWert()[i] + " " + Ion;
@@ -46,6 +63,24 @@ public class FilewriterImpl implements Filewriter {
                 pWriter.close();
                 erfolg = true;
             }
+        }
+        Boolean keineTreffer = writteDate(filename + "_Keine_Treffer.txt", keinetreffer);
+
+        for (int i = 0; i < relevanteKeinetreffer.length; i++) {
+            if (relevanteKeinetrefferRela[i] >= 5.00) {
+                list.add(relevanteKeinetreffer[i] + " " + relevanteKeinetrefferMzahl[i] + " " + relevanteKeinetrefferRela[i]);
+            }
+        }
+        String[] temp = new String[list.size()];
+        //temp[0]="Relevante nicht Treffer: "++"TrefferID" + " " + "MZ" + " "+ "Relativ";
+        for (int i = 1; i < list.size(); i++) {
+            temp[i] = list.get(i);
+        }
+        int pimp = temp.length - 1;
+        temp[0] = "Relevante nicht Treffer: " + pimp + "\n" + "TrefferID" + " " + "MZ" + " " + "Relativ";
+        Boolean relevate = writteDate(filename + "_relavanteNichtGefunden.txt", temp);
+        if (keineTreffer == false || relevate == false) {
+            System.out.println("Fehler beim Erstellen der Liste von keinen Treffern!!!");
         }
         PrintWriter pW = null;
         try {
@@ -75,11 +110,11 @@ public class FilewriterImpl implements Filewriter {
 
             pd = new PrintWriter(new FileWriter(filename + "_nurMitEOWerten.txt", true));
             pd.println("Auswertung für: " + filename);
-            String Struktur = "TrefferID" + " " + "MZ" + " " + "MZ_Korriergiert" + " " + "Relativ" + " " + "EO";
+            String Struktur = "TrefferID" + " " + "MZ" + " " + "MZ_Korriergiert" + " " + "Relativ" + " " + "EO" + " " + "Bemerkun/Art_Der_Korrektur";
             pd.println(Struktur);
             for (int i = 0; i < analysenObjekt.getTrefferID().length; i++) {
                 if (analysenObjekt.getKorrekturWertID()[i] != 99) {
-                    String ausgabe = analysenObjekt.getTrefferID()[i] + " " + analysenObjekt.getmZahl()[i] + " " + analysenObjekt.getmKorriergiert()[i] + " " + analysenObjekt.getRelativwert()[i] + " " + analysenObjekt.getEoWert()[i];
+                    String ausgabe = analysenObjekt.getTrefferID()[i] + " " + analysenObjekt.getmZahl()[i] + " " + analysenObjekt.getmKorriergiert()[i] + " " + analysenObjekt.getRelativwert()[i] + " " + analysenObjekt.getEoWert()[i] + " " + KorrekturwerteDaten.getIonname()[analysenObjekt.getKorrekturWertID()[i]];
                     pd.println(ausgabe);
                 }
             }

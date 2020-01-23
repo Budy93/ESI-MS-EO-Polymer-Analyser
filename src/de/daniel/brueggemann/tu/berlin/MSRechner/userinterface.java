@@ -47,6 +47,8 @@ public class userinterface {
         String AusgabeDatei = System.getProperty("user.home") + "\\Desktop\\" + Probenname;
         System.out.println("Wurde mit Natrium gearbeitet true or false?");
         KorrekturwerteDaten.setNatrium(ein.JaoderNein());
+        System.out.println("Wie viel Co2 hat die Probe in Prozent?");
+        double CO2GehaltinProzent = ein.doublereader();
         ///TO-DO
 
 
@@ -86,13 +88,13 @@ public class userinterface {
         int[] ergebnisausdruck = new int[4];
         AnalyserInterface analy = new AnalyseImplementierung();
         Treffer treffer = new Treffer();
-        treffer = analy.anzahlErgebnisse(messdaten, true, false, true);
+        treffer = analy.anzahlErgebnisse(messdaten, true, true, true);
         ergebnisausdruck[0] = treffer.getTreffer();
         ergebnisausdruck[1] = treffer.getDoppelt();
         ergebnisausdruck[2] = treffer.getKeinTreffer();
         ergebnisausdruck[3] = treffer.getEindeutig();
         System.out.println("Es wurden " + MSwerte.length + " ausgewerte dabei wurden " + ergebnisausdruck[0] + " Treffer gefunden, davon waren " + ergebnisausdruck[1] + " doppelt. Eindeutige einzelltreffer waren: " + ergebnisausdruck[3] + " Nichts wurde gefunden bei " + ergebnisausdruck[2]);
-        ana = analy.esikorrekturObject(messdaten, treffer, true, false, true);
+        ana = analy.esikorrekturObject(messdaten, treffer, true, true, true);
         for (int i = 0; i < ana.getTrefferID().length; i++) {
             System.out.println(ana.getKorrektur()[i]);
         }
@@ -112,12 +114,15 @@ public class userinterface {
         }*/
         //}
         Filewriter file = new FilewriterImpl();
-        boolean erfolg = file.writtereport(AusgabeDatei, null, treffer, ana);
+        Tensid tensid = new Tensid();
+        tensid = analy.charakterisierung(Probenname, CO2GehaltinProzent, messdaten, true, false);
+        boolean erfolg = file.writtereport(AusgabeDatei, tensid, treffer, ana);
         if (erfolg == true) {
             System.out.println("Datei Geschrieben");
         } else {
             System.out.println("Fehler beim Schreiben der Daten");
         }
+        System.out.println("Es wurden " + MSwerte.length + " ausgewerte dabei wurden " + ergebnisausdruck[0] + " Treffer gefunden, davon waren " + ergebnisausdruck[1] + " doppelt. Eindeutige einzelltreffer waren: " + ergebnisausdruck[3] + " Nichts wurde gefunden bei " + ergebnisausdruck[2]);
     }
 
     /*private static void analyse(double[] MSwerte) {

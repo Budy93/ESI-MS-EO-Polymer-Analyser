@@ -3,6 +3,8 @@
  */
 package de.daniel.brueggemann.tu.berlin.MSRechner;
 
+import java.lang.management.MemoryNotificationInfo;
+
 /**
  * The type Analyse implementierung.
  *
@@ -343,20 +345,203 @@ public class AnalyseImplementierung implements AnalyserInterface {
 
     //TODO DRINGEND ZU MACHEN
     @Override
-    public Tensid charakteristikKorregiert(String probename, double CO2GehaltinProzent, AnalysenObjekt analysenObjekt) {
-        return null;
+    public Tensid charakteristikKorregiert(String probename, double CO2GehaltinProzent, AnalysenObjekt analysenObjekt, boolean laurin, boolean dodecanol) {
+        Tensid tensid = new Tensid();
+        double[] mzZhal = analysenObjekt.getmZahl();
+        double[] relativ = analysenObjekt.getRelativwert();
+        String[] ausgabe = new String[mzZhal.length + 4];
+        double[] xi = new double[mzZhal.length];
+        double[] xiMI = new double[mzZhal.length];
+        //double[] niMI=new double[mzZhal.length];
+        double[] wi = new double[mzZhal.length];
+        double[] niMI = new double[mzZhal.length];
+        double[] miWI = new double[mzZhal.length];
+        double summeRelativitaet = 0;
+        double summeMI = 0;
+        double KotrolleXI = 0;
+        double Mn = 0;
+        double kontoleWI = 0;
+        double Mw = 0;
+        double PDI = 0;
+        double selectiviteat = 0;
+        for (int i = 0; i < relativ.length; i++) {
+            summeRelativitaet += relativ[i];
+        }
+        for (int i = 0; i < relativ.length; i++) {
+            xi[i] = relativ[i] / summeRelativitaet;
+        }
+        for (int i = 0; i < xi.length; i++) {
+            xiMI[i] = xi[i] * mzZhal[i];
+        }
+        for (int i = 0; i < relativ.length; i++) {
+            niMI[i] = mzZhal[i] * relativ[i];
+        }
+        for (int i = 0; i < niMI.length; i++) {
+            summeMI += niMI[i];
+        }
+        for (int i = 0; i < niMI.length; i++) {
+            wi[i] = niMI[i] / summeMI;
+        }
+        for (int i = 0; i < wi.length; i++) {
+            miWI[i] = wi[i] * mzZhal[i];
+        }
+        for (int i = 0; i < xi.length; i++) {
+            KotrolleXI += xi[i];
+        }
+        for (int i = 0; i < xiMI.length; i++) {
+            Mn += xiMI[i];
+        }
+        for (int i = 0; i < wi.length; i++) {
+            kontoleWI += wi[i];
+        }
+        for (int i = 0; i < miWI.length; i++) {
+            Mw += miWI[i];
+        }
+        PDI = Mw / Mn;
+        double EOpCO2 = 0;
+        double EO = 0;
+        double Co2 = 0;
+        if (dodecanol == true) {
+            EOpCO2 = (Mw - 169 - 17) / 44;
+        } else if (laurin == true) {
+            EOpCO2 = (Mw - 199 - 17) / 44;
+        }
+        Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
+        EO = EOpCO2 - Co2;
+        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent);
+        double select = selectivität(tensid, laurin, dodecanol, false);
+        ausgabe[0] = "Tenside: " + probename + " Mn: " + Mn + " Mw: " + Mw + " PDI: " + PDI + " EOGruppen: " + EO + " CO2 Gruppen: " + Co2 + " CO2 Gehalt: " + CO2GehaltinProzent + " Selektivität CO2 ist: " + select;
+        ausgabe[1] = "";
+        ausgabe[2] = "Summe XI:" + KotrolleXI + " Summe WI" + KotrolleXI;
+        ausgabe[3] = "M/Z Relativ xi xi*Mi ni*MI wi=(ni*Mi)/SUMME(ni*MI) mi*wi";
+        int speicher = 4;
+        for (int i = 0; i < mzZhal.length; i++) {
+            ausgabe[speicher] = mzZhal[i] + " " + relativ[i] + " " + xi[i] + " " + xiMI[i] + " " + niMI[i] + " " + wi[i] + " " + miWI[i];
+            speicher++;
+        }
+        Filewriter file = new FilewriterImpl();
+        Boolean schreiben = file.writteDate(System.getProperty("user.home") + "\\Desktop\\" + probename + "_Charakter_Daten_Kleinste_EO.txt", ausgabe);
+        if (schreiben != true) {
+            System.out.println("Fehler beim niederschreiben der Charakterdaten");
+        }
+        return tensid;
     }
 
     //TODO AUCH DRINGEND
     @Override
-    public Tensid charakterisierung(String probenname, double CO2GehaltinProzent, Messdaten messdaten) {
-        return null;
+    public Tensid charakterisierung(String probenname, double CO2GehaltinProzent, Messdaten messdaten, boolean laurin, boolean dodecanol) {
+        Tensid tensid = new Tensid();
+        double[] mzZhal = messdaten.getMzZahl();
+        double[] relativ = messdaten.getRelativ();
+        String[] ausgabe = new String[mzZhal.length + 4];
+        double[] xi = new double[mzZhal.length];
+        double[] xiMI = new double[mzZhal.length];
+        //double[] niMI=new double[mzZhal.length];
+        double[] wi = new double[mzZhal.length];
+        double[] niMI = new double[mzZhal.length];
+        double[] miWI = new double[mzZhal.length];
+        double summeRelativitaet = 0;
+        double summeMI = 0;
+        double KotrolleXI = 0;
+        double Mn = 0;
+        double kontoleWI = 0;
+        double Mw = 0;
+        double PDI = 0;
+        double selectiviteat = 0;
+        for (int i = 0; i < relativ.length; i++) {
+            summeRelativitaet += relativ[i];
+        }
+        for (int i = 0; i < relativ.length; i++) {
+            xi[i] = relativ[i] / summeRelativitaet;
+        }
+        for (int i = 0; i < xi.length; i++) {
+            xiMI[i] = xi[i] * mzZhal[i];
+        }
+        for (int i = 0; i < relativ.length; i++) {
+            niMI[i] = mzZhal[i] * relativ[i];
+        }
+        for (int i = 0; i < niMI.length; i++) {
+            summeMI += niMI[i];
+        }
+        for (int i = 0; i < niMI.length; i++) {
+            wi[i] = niMI[i] / summeMI;
+        }
+        for (int i = 0; i < wi.length; i++) {
+            miWI[i] = wi[i] * mzZhal[i];
+        }
+        for (int i = 0; i < xi.length; i++) {
+            KotrolleXI += xi[i];
+        }
+        for (int i = 0; i < xiMI.length; i++) {
+            Mn += xiMI[i];
+        }
+        for (int i = 0; i < wi.length; i++) {
+            kontoleWI += wi[i];
+        }
+        for (int i = 0; i < miWI.length; i++) {
+            Mw += miWI[i];
+        }
+        PDI = Mw / Mn;
+        double EOpCO2 = 0;
+        double EO = 0;
+        double Co2 = 0;
+        if (dodecanol == true) {
+            EOpCO2 = (Mw - 169 - 17) / 44;
+        } else if (laurin == true) {
+            EOpCO2 = (Mw - 199 - 17) / 44;
+        }
+        Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
+        EO = EOpCO2 - Co2;
+        tensid.Tenside(probenname, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent);
+        double select = selectivität(tensid, laurin, dodecanol, false);
+        ausgabe[0] = "Tenside: " + probenname + " Mn: " + Mn + " Mw: " + Mw + " PDI: " + PDI + " EOGruppen: " + EO + " CO2 Gruppen: " + Co2 + " CO2 Gehalt: " + CO2GehaltinProzent + " eine CO2 Selectivität von: " + select;
+        System.out.println(ausgabe[0]);
+        ausgabe[1] = "";
+        ausgabe[2] = "Summe XI:" + KotrolleXI + " Summe WI" + KotrolleXI;
+        ausgabe[3] = "M/Z Relativ xi xi*Mi ni*MI wi=(ni*Mi)/SUMME(ni*MI) mi*wi";
+        int speicher = 4;
+        for (int i = 0; i < mzZhal.length; i++) {
+            ausgabe[speicher] = mzZhal[i] + " " + relativ[i] + " " + xi[i] + " " + xiMI[i] + " " + niMI[i] + " " + wi[i] + " " + miWI[i];
+            speicher++;
+        }
+        Filewriter file = new FilewriterImpl();
+        Boolean schreiben = file.writteDate(System.getProperty("user.home") + "\\Desktop\\" + probenname + "_Charakter_Daten.txt", ausgabe);
+        if (schreiben != true) {
+            System.out.println("Fehler beim niederschreiben der Charakterdaten");
+        }
+        return tensid;
+
+
+        /*
+        xi	xi*Mi		ni*MI	wi (ni*Mi)/SUMME(ni*MI)	mi*wi
+
+        ausgabe string mit auswertung 0
+        leerezeile1
+        Zwischen summen
+        struktur berechung 3
+        ab 4 alle rechen zeilen
+        *2 double arrys
+         *5 double arrays
+         * Summe Relativität
+            Kontrole XI MUSS=1
+            Mn
+            Summe mi
+            Kontrolle Wi Muss=1
+            Mw
+            PDI
+
+         */
     }
 
     //TODO Heute Abend machen
     @Override
     public double selectivität(Tensid tensid, boolean laurinsauere, boolean dodecanol, boolean eo) {
-        return 0;
+        double EO = round(tensid.getEO(), 0);
+        double Sollselectiv = 1;
+        double Istselectiv = tensid.getCO2() / tensid.getEO();
+        double abweichung = Sollselectiv - Istselectiv;
+        double Selectivitaet = 1 - abweichung;
+        return Selectivitaet;
     }
 
 

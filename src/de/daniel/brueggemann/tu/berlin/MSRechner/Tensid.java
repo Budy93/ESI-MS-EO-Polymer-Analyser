@@ -150,14 +150,14 @@ public class Tensid {
      * @param co2       the co 2
      * @param co2Gehalt the co 2 gehalt
      */
-    public Tensid(String name, double mw, double mn, double pdi, double eo, double co2, double co2Gehalt) {
-        Name = name;
-        MW = mw;
-        MN = mn;
-        PDI = pdi;
-        EO = eo;
-        CO2 = co2;
-        CO2Gehalt = co2Gehalt;
+    public void Tenside(String name, double mw, double mn, double pdi, double eo, double co2, double co2Gehalt) {
+        this.Name = name;
+        this.MW = mw;
+        this.MN = mn;
+        this.PDI = pdi;
+        this.EO = eo;
+        this.CO2 = co2;
+        this.CO2Gehalt = co2Gehalt;
     }
 
 }

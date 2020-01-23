@@ -98,7 +98,7 @@ public interface AnalyserInterface
 	 * @param analysenObjekt the analysen objekt
 	 * @return the tensid
 	 */
-	Tensid charakteristikKorregiert(String probename, double CO2GehaltinProzent, AnalysenObjekt analysenObjekt);
+	Tensid charakteristikKorregiert(String probename, double CO2GehaltinProzent, AnalysenObjekt analysenObjekt, boolean laurin, boolean dodecanol);
 
 	/**
 	 * Charakterisierung tensid.
@@ -107,7 +107,7 @@ public interface AnalyserInterface
 	 * @param messdaten  the messdaten
 	 * @return the tensid
 	 */
-	Tensid charakterisierung(String probenname, double CO2GehaltinProzent, Messdaten messdaten);
+	Tensid charakterisierung(String probenname, double CO2GehaltinProzent, Messdaten messdaten, boolean laurin, boolean dodecanol);
 
 	double selectivität(Tensid tensid, boolean laurinsauere, boolean dodecanol, boolean eo);
 
