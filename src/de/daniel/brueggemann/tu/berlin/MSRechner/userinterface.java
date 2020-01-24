@@ -92,7 +92,7 @@ public class userinterface {
         double CO2GehaltinProzent = ein.doublereader();
         System.out.println("Wollen sie auf Dodecanol Pruefen? true or false");
         Boolean dode = ein.JaoderNein();
-        System.out.println("Wollen sie auf Dodecanol Pruefen? true or false");
+        System.out.println("Wollen sie auf Laurinsaeure Pruefen? true or false");
         Boolean lau = ein.JaoderNein();
         System.out.println("Wollen sie auf EO-Ketten alleine Pruefen? true or false");
         Boolean eoP = ein.JaoderNein();
@@ -222,7 +222,7 @@ public class userinterface {
         String[] abschlussbericht = new String[16];
         abschlussbericht[0] = "Ausgewertet wurde die Probe: " + Probenname + " Mittlerer EO-Wert ist: " + EOmittel + " relevantes Mittel: " + EOmittelREL;
         abschlussbericht[2] = "Genutzte Programm Version: " + version;
-        abschlussbericht[4] = "Gesetzte Optionen Natrium: " + natrium + " Dodecanol: " + "false" + " Laurinsaeure: " + "TRUE" + " EO: " + "TRUE";
+        abschlussbericht[4] = "Gesetzte Optionen Natrium: " + natrium + " Dodecanol: " + dode + " Laurinsaeure: " + lau + " EO: " + eoP;
         abschlussbericht[6] = Tensidzusammenfassung("Wurde keine Korrektur beachtet", tensid);
         abschlussbericht[8] = Tensidzusammenfassung("Wurden nur Massenzahlen mit einer Relativitaet groesser 1 mit korrespondierender EO Zahl beachtet", tensidEORelevant);
         abschlussbericht[10] = Tensidzusammenfassung("Wurde nur daten Beachet die einen eindeutigen EO Wert haben und keine mehrfach bedeutung.", eindeutigesTensid);
