@@ -425,6 +425,7 @@ public class AnalyseImplementierung implements AnalyserInterface {
         }
         Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
         EO = EOpCO2 - Co2;
+        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, 0);
         double select = selectivität(tensid, laurin, dodecanol, false);
         tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, select);
         ausgabe[0] = "Tenside: " + probename + " Mn: " + Mn + " Mw: " + Mw + " PDI: " + PDI + " EOGruppen: " + EO + " CO2 Gruppen: " + Co2 + " CO2 Gehalt: " + CO2GehaltinProzent + " Selektivität CO2 ist: " + select;
@@ -510,6 +511,7 @@ public class AnalyseImplementierung implements AnalyserInterface {
         }
         Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
         EO = EOpCO2 - Co2;
+        tensid.Tenside(probenname, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, 0);
         double select = selectivität(tensid, laurin, dodecanol, false);
         tensid.Tenside(probenname, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, select);
         ausgabe[0] = "Tenside: " + probenname + " Mn: " + Mn + " Mw: " + Mw + " PDI: " + PDI + " EOGruppen: " + EO + " CO2 Gruppen: " + Co2 + " CO2 Gehalt: " + CO2GehaltinProzent + " eine CO2 Selectivität von: " + select;
@@ -821,6 +823,7 @@ public class AnalyseImplementierung implements AnalyserInterface {
         }
         Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
         EO = EOpCO2 - Co2;
+        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, 0);
         double select = selectivität(tensid, laurin, dodecanol, false);
         ausgabe[0] = "Tenside: " + probename + " Mn: " + Mn + " Mw: " + Mw + " PDI: " + PDI + " EOGruppen: " + EO + " CO2 Gruppen: " + Co2 + " CO2 Gehalt: " + CO2GehaltinProzent + " Selektivität CO2 ist: " + select;
         ausgabe[1] = "";
@@ -905,6 +908,7 @@ public class AnalyseImplementierung implements AnalyserInterface {
         }
         Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
         EO = EOpCO2 - Co2;
+        tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, 0);
         double select = selectivität(tensid, laurin, dodecanol, false);
         tensid.Tenside(probename, Mw, Mn, PDI, EO, Co2, CO2GehaltinProzent, select);
         ausgabe[0] = "Tenside: " + probename + " Mn: " + Mn + " Mw: " + Mw + " PDI: " + PDI + " EOGruppen: " + EO + " CO2 Gruppen: " + Co2 + " CO2 Gehalt: " + CO2GehaltinProzent + " Selektivität CO2 ist: " + select;
@@ -971,6 +975,11 @@ public class AnalyseImplementierung implements AnalyserInterface {
         return Tens;
     }
 
+    /**
+     * Sets tens.
+     *
+     * @param tens the tens
+     */
     public void setTens(Tensid tens) {
         Tens = tens;
     }

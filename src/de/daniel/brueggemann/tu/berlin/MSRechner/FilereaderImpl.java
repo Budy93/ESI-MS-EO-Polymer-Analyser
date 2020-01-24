@@ -1,5 +1,8 @@
 package de.daniel.brueggemann.tu.berlin.MSRechner;
 
+/**
+ * The type Filereader.
+ */
 public class FilereaderImpl implements Filereader {
     /**
      * Readfile string [ ].

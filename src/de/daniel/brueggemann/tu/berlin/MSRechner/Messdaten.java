@@ -8,6 +8,13 @@ class Messdaten {
     private double[] Intensitaet;
     private double[] Relativ;
 
+    /**
+     * Messdaten.
+     *
+     * @param mzZahl      the mz zahl
+     * @param intensitaet the intensitaet
+     * @param relativ     the relativ
+     */
     public void Messdaten(double[] mzZahl, double[] intensitaet, double[] relativ) {
         MzZahl = mzZahl;
         Intensitaet = intensitaet;

@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/**
+ * The type Filewriter.
+ */
 public class FilewriterImpl implements Filewriter {
 
     @Override

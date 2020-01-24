@@ -4,9 +4,10 @@
 package de.daniel.brueggemann.tu.berlin.MSRechner;
 
 /**
+ * The type Korrekturwerte daten.
+ *
  * @author Daniel
  */
-
 public final class KorrekturwerteDaten {
 	private static double[] IonenPossitiv;
 	private final static double[] IonenPossitivONatrium = {1.007276, 19.985217, 21.520550, 42.033823, 62.547097,
@@ -41,208 +42,372 @@ public final class KorrekturwerteDaten {
 
 	private static boolean Natrium;
 
-	/**
-	 * @return the laurinsauerePR
-	 */
-	public boolean isLaurinsauerePR() {
-		return LaurinsauerePR;
-	}
+    /**
+     * Is laurinsauere pr boolean.
+     *
+     * @return the laurinsauerePR
+     */
+    public boolean isLaurinsauerePR() {
+        return LaurinsauerePR;
+    }
 
-	/**
-	 * @param laurinsauerePR the laurinsauerePR to set
-	 */
-	public void setLaurinsauerePR(boolean laurinsauerePR) {
-		LaurinsauerePR = laurinsauerePR;
-	}
+    /**
+     * Sets laurinsauere pr.
+     *
+     * @param laurinsauerePR the laurinsauerePR to set
+     */
+    public void setLaurinsauerePR(boolean laurinsauerePR) {
+        LaurinsauerePR = laurinsauerePR;
+    }
 
-	/**
-	 * @return the eOPR
-	 */
-	public boolean isEOPR() {
-		return EOPR;
-	}
+    /**
+     * Is eopr boolean.
+     *
+     * @return the eOPR
+     */
+    public boolean isEOPR() {
+        return EOPR;
+    }
 
-	/**
-	 * @param eOPR the eOPR to set
-	 */
-	public void setEOPR(boolean eOPR) {
-		EOPR = eOPR;
-	}
+    /**
+     * Sets eopr.
+     *
+     * @param eOPR the eOPR to set
+     */
+    public void setEOPR(boolean eOPR) {
+        EOPR = eOPR;
+    }
 
-	/**
-	 * @return the dodecanolPR
-	 */
-	public boolean isDodecanolPR() {
-		return DodecanolPR;
-	}
+    /**
+     * Is dodecanol pr boolean.
+     *
+     * @return the dodecanolPR
+     */
+    public boolean isDodecanolPR() {
+        return DodecanolPR;
+    }
 
-	/**
-	 * @param dodecanolPR the dodecanolPR to set
-	 */
-	public void setDodecanolPR(boolean dodecanolPR) {
-		DodecanolPR = dodecanolPR;
-	}
+    /**
+     * Sets dodecanol pr.
+     *
+     * @param dodecanolPR the dodecanolPR to set
+     */
+    public void setDodecanolPR(boolean dodecanolPR) {
+        DodecanolPR = dodecanolPR;
+    }
 
-	/**
-	 * @return the ionenpossitiv
-	 */
-	public static double[] getIonenpossitiv() {
-		return IonenPossitiv;
-	}
+    /**
+     * Get ionenpossitiv double [ ].
+     *
+     * @return the ionenpossitiv
+     */
+    public static double[] getIonenpossitiv() {
+        return IonenPossitiv;
+    }
 
-	/**
-	 * @return the ionenladung
-	 */
-	public static int[] getIonenladung() {
-		return IonenLadung;
-	}
+    /**
+     * Get ionenladung int [ ].
+     *
+     * @return the ionenladung
+     */
+    public static int[] getIonenladung() {
+        return IonenLadung;
+    }
 
-	/**
-	 * @return the ionencharge
-	 */
-	public static double[] getIonencharge() {
-		return IonenCharge;
-	}
+    /**
+     * Get ionencharge double [ ].
+     *
+     * @return the ionencharge
+     */
+    public static double[] getIonencharge() {
+        return IonenCharge;
+    }
 
-	/**
-	 * @return the ionname
-	 */
-	public static String[] getIonname() {
-		return IonName;
-	}
+    /**
+     * Get ionname string [ ].
+     *
+     * @return the ionname
+     */
+    public static String[] getIonname() {
+        return IonName;
+    }
 
-	/**
-	 * @return the mp2h
-	 */
-	public static double getMp2h() {
-		return MP2H;
-	}
+    /**
+     * Gets mp 2 h.
+     *
+     * @return the mp2h
+     */
+    public static double getMp2h() {
+        return MP2H;
+    }
 
-	/**
-	 * @return the mphk
-	 */
-	public static double getMphk() {
-		return MPHK;
-	}
+    /**
+     * Gets mphk.
+     *
+     * @return the mphk
+     */
+    public static double getMphk() {
+        return MPHK;
+    }
 
-	public static double[] getIonenPossitivONatrium() {
-		return IonenPossitivONatrium;
-	}
+    /**
+     * Get ionen possitiv o natrium double [ ].
+     *
+     * @return the double [ ]
+     */
+    public static double[] getIonenPossitivONatrium() {
+        return IonenPossitivONatrium;
+    }
 
-	public static double[] getIonenPossitivWNatrium() {
-		return IonenPossitivWNatrium;
-	}
+    /**
+     * Get ionen possitiv w natrium double [ ].
+     *
+     * @return the double [ ]
+     */
+    public static double[] getIonenPossitivWNatrium() {
+        return IonenPossitivWNatrium;
+    }
 
-	public static void setIonenPossitiv(double[] ionenPossitiv) {
-		IonenPossitiv = ionenPossitiv;
-	}
+    /**
+     * Sets ionen possitiv.
+     *
+     * @param ionenPossitiv the ionen possitiv
+     */
+    public static void setIonenPossitiv(double[] ionenPossitiv) {
+        IonenPossitiv = ionenPossitiv;
+    }
 
-	public boolean isNatrium() {
-		return Natrium;
-	}
+    /**
+     * Is natrium boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isNatrium() {
+        return Natrium;
+    }
 
-	public static double[] getIonenPossitiv() {
-		return IonenPossitiv;
-	}
+    /**
+     * Get ionen possitiv double [ ].
+     *
+     * @return the double [ ]
+     */
+    public static double[] getIonenPossitiv() {
+        return IonenPossitiv;
+    }
 
-	public static int[] getIonenLadung() {
-		return IonenLadung;
-	}
+    /**
+     * Get ionen ladung int [ ].
+     *
+     * @return the int [ ]
+     */
+    public static int[] getIonenLadung() {
+        return IonenLadung;
+    }
 
-	public static void setIonenLadung(int[] ionenLadung) {
-		IonenLadung = ionenLadung;
-	}
+    /**
+     * Sets ionen ladung.
+     *
+     * @param ionenLadung the ionen ladung
+     */
+    public static void setIonenLadung(int[] ionenLadung) {
+        IonenLadung = ionenLadung;
+    }
 
-	public static int[] getIonenLadungWN() {
-		return IonenLadungWN;
-	}
+    /**
+     * Get ionen ladung wn int [ ].
+     *
+     * @return the int [ ]
+     */
+    public static int[] getIonenLadungWN() {
+        return IonenLadungWN;
+    }
 
-	public static void setIonenLadungWN(int[] ionenLadungWN) {
-		IonenLadungWN = ionenLadungWN;
-	}
+    /**
+     * Sets ionen ladung wn.
+     *
+     * @param ionenLadungWN the ionen ladung wn
+     */
+    public static void setIonenLadungWN(int[] ionenLadungWN) {
+        IonenLadungWN = ionenLadungWN;
+    }
 
-	public static int[] getIonenLadungON() {
-		return IonenLadungON;
-	}
+    /**
+     * Get ionen ladung on int [ ].
+     *
+     * @return the int [ ]
+     */
+    public static int[] getIonenLadungON() {
+        return IonenLadungON;
+    }
 
-	public static void setIonenLadungON(int[] ionenLadungON) {
-		IonenLadungON = ionenLadungON;
-	}
+    /**
+     * Sets ionen ladung on.
+     *
+     * @param ionenLadungON the ionen ladung on
+     */
+    public static void setIonenLadungON(int[] ionenLadungON) {
+        IonenLadungON = ionenLadungON;
+    }
 
-	public static double[] getIonenCharge() {
-		return IonenCharge;
-	}
+    /**
+     * Get ionen charge double [ ].
+     *
+     * @return the double [ ]
+     */
+    public static double[] getIonenCharge() {
+        return IonenCharge;
+    }
 
-	public static void setIonenCharge(double[] ionenCharge) {
-		IonenCharge = ionenCharge;
-	}
+    /**
+     * Sets ionen charge.
+     *
+     * @param ionenCharge the ionen charge
+     */
+    public static void setIonenCharge(double[] ionenCharge) {
+        IonenCharge = ionenCharge;
+    }
 
-	public static double[] getIonenChargeWN() {
-		return IonenChargeWN;
-	}
+    /**
+     * Get ionen charge wn double [ ].
+     *
+     * @return the double [ ]
+     */
+    public static double[] getIonenChargeWN() {
+        return IonenChargeWN;
+    }
 
-	public static void setIonenChargeWN(double[] ionenChargeWN) {
-		IonenChargeWN = ionenChargeWN;
-	}
+    /**
+     * Sets ionen charge wn.
+     *
+     * @param ionenChargeWN the ionen charge wn
+     */
+    public static void setIonenChargeWN(double[] ionenChargeWN) {
+        IonenChargeWN = ionenChargeWN;
+    }
 
-	public static double[] getIonenChargeON() {
-		return IonenChargeON;
-	}
+    /**
+     * Get ionen charge on double [ ].
+     *
+     * @return the double [ ]
+     */
+    public static double[] getIonenChargeON() {
+        return IonenChargeON;
+    }
 
-	public static void setIonenChargeON(double[] ionenChargeON) {
-		IonenChargeON = ionenChargeON;
-	}
+    /**
+     * Sets ionen charge on.
+     *
+     * @param ionenChargeON the ionen charge on
+     */
+    public static void setIonenChargeON(double[] ionenChargeON) {
+        IonenChargeON = ionenChargeON;
+    }
 
-	public static String[] getIonName() {
-		return IonName;
-	}
+    /**
+     * Get ion name string [ ].
+     *
+     * @return the string [ ]
+     */
+    public static String[] getIonName() {
+        return IonName;
+    }
 
-	public static void setIonName(String[] ionName) {
-		IonName = ionName;
-	}
+    /**
+     * Sets ion name.
+     *
+     * @param ionName the ion name
+     */
+    public static void setIonName(String[] ionName) {
+        IonName = ionName;
+    }
 
-	public static String[] getIonNameWN() {
-		return IonNameWN;
-	}
+    /**
+     * Get ion name wn string [ ].
+     *
+     * @return the string [ ]
+     */
+    public static String[] getIonNameWN() {
+        return IonNameWN;
+    }
 
-	public static void setIonNameWN(String[] ionNameWN) {
-		IonNameWN = ionNameWN;
-	}
+    /**
+     * Sets ion name wn.
+     *
+     * @param ionNameWN the ion name wn
+     */
+    public static void setIonNameWN(String[] ionNameWN) {
+        IonNameWN = ionNameWN;
+    }
 
-	public static String[] getIonNameON() {
-		return IonNameON;
-	}
+    /**
+     * Get ion name on string [ ].
+     *
+     * @return the string [ ]
+     */
+    public static String[] getIonNameON() {
+        return IonNameON;
+    }
 
-	public static void setIonNameON(String[] ionNameON) {
-		IonNameON = ionNameON;
-	}
+    /**
+     * Sets ion name on.
+     *
+     * @param ionNameON the ion name on
+     */
+    public static void setIonNameON(String[] ionNameON) {
+        IonNameON = ionNameON;
+    }
 
-	public static double getMP2H() {
-		return MP2H;
-	}
+    /**
+     * Gets mp 2 h.
+     *
+     * @return the mp 2 h
+     */
+    public static double getMP2H() {
+        return MP2H;
+    }
 
-	public static void setMP2H(double MP2H) {
-		KorrekturwerteDaten.MP2H = MP2H;
-	}
+    /**
+     * Sets mp 2 h.
+     *
+     * @param MP2H the mp 2 h
+     */
+    public static void setMP2H(double MP2H) {
+        KorrekturwerteDaten.MP2H = MP2H;
+    }
 
-	public static double getMPHK() {
-		return MPHK;
-	}
+    /**
+     * Gets mphk.
+     *
+     * @return the mphk
+     */
+    public static double getMPHK() {
+        return MPHK;
+    }
 
-	public static void setMPHK(double MPHK) {
-		KorrekturwerteDaten.MPHK = MPHK;
-	}
+    /**
+     * Sets mphk.
+     *
+     * @param MPHK the mphk
+     */
+    public static void setMPHK(double MPHK) {
+        KorrekturwerteDaten.MPHK = MPHK;
+    }
 
-	public static void setNatrium(boolean natrium) {
-		Natrium = natrium;
-		if (natrium == true) {
-			setIonenPossitiv(getIonenPossitivWNatrium());
-			setIonenCharge(getIonenChargeWN());
-			setIonenLadung(getIonenLadungWN());
-			setIonName(getIonNameWN());
-			System.out.println(IonenPossitiv.length + " " + IonName.length + " " + IonenCharge.length + " " + IonenLadung.length);
-		} else {
-			setIonenPossitiv(getIonenPossitivONatrium());
+    /**
+     * Sets natrium.
+     *
+     * @param natrium the natrium
+     */
+    public static void setNatrium(boolean natrium) {
+        Natrium = natrium;
+        if (natrium == true) {
+            setIonenPossitiv(getIonenPossitivWNatrium());
+            setIonenCharge(getIonenChargeWN());
+            setIonenLadung(getIonenLadungWN());
+            setIonName(getIonNameWN());
+            System.out.println(IonenPossitiv.length + " " + IonName.length + " " + IonenCharge.length + " " + IonenLadung.length);
+        } else {
+            setIonenPossitiv(getIonenPossitivONatrium());
 			setIonenCharge(getIonenChargeON());
 			setIonenLadung(getIonenLadungON());
 			setIonName(getIonNameON());

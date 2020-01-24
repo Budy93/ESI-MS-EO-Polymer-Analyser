@@ -143,13 +143,14 @@ public class Tensid {
     /**
      * Instantiates a new Tensid.
      *
-     * @param name      the name
-     * @param mw        the mw
-     * @param mn        the mn
-     * @param pdi       the pdi
-     * @param eo        the eo
-     * @param co2       the co 2
-     * @param co2Gehalt the co 2 gehalt
+     * @param name          the name
+     * @param mw            the mw
+     * @param mn            the mn
+     * @param pdi           the pdi
+     * @param eo            the eo
+     * @param co2           the co 2
+     * @param co2Gehalt     the co 2 gehalt
+     * @param selectivitaet the selectivitaet
      */
     public void Tenside(String name, double mw, double mn, double pdi, double eo, double co2, double co2Gehalt, double selectivitaet) {
         this.Name = name;
@@ -162,10 +163,20 @@ public class Tensid {
         this.selectivitaet = selectivitaet;
     }
 
+    /**
+     * Gets selectivitaet.
+     *
+     * @return the selectivitaet
+     */
     public double getSelectivitaet() {
         return selectivitaet;
     }
 
+    /**
+     * Sets selectivitaet.
+     *
+     * @param selectivitaet the selectivitaet
+     */
     public void setSelectivitaet(double selectivitaet) {
         this.selectivitaet = selectivitaet;
     }

@@ -12,32 +12,65 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * The type Userinterface.
+ *
  * @author Daniel
  */
 public class userinterface {
 
     /**
+     * The Ionen possitiv.
+     *
      * @param args
      */
     public final static double[] IonenPossitiv = {1.007276, 19.985217, 21.520550, 22.989218, 42.033823, 62.547097,
             1.007276, 22.989218, 33.033489, 38.963158, 42.033823, 44.971160, 64.015765, 76.919040, 83.060370, 1.007276,
             22.989218, 28.02312, 38.963158};
+    /**
+     * The Ionen ladung.
+     */
     public final static int[] IonenLadung = {2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1};
+    /**
+     * The Ionen charge.
+     */
     public final static double[] IonenCharge = {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2};
+    /**
+     * The Ion name.
+     */
     public final static String[] IonName = {"M+2H", "M+H+K", "M+ACN+2H", "M+2Na", "M+2ACN+2H", "M+3ACN+2H", "M+H",
             "M+Na", "M+CH3OH+H", "M+K", "M+ACN+H", "M+2Na-H", "M+ACN+Na", "M+2K+H", "M+2ACN+H", "2M+H", "2M+Na",
             "2M+3H2O+2H", "2M+K"};
+    /**
+     * The constant MP2H.
+     */
     public final static double MP2H = 1.007276;
+    /**
+     * The constant MPHK.
+     */
     public final static double MPHK = 19.985217;
     private boolean LaurinsauerePR = true;
     private boolean EOPR = true;
     private boolean DodecanolPR = false;
     private boolean Natrium = false;
+    /**
+     * The constant ana.
+     */
     public static AnalysenObjekt ana = new AnalysenObjekt();
+    /**
+     * The constant messdaten.
+     */
     public static Messdaten messdaten = new Messdaten();
+    /**
+     * The constant version.
+     */
     public static final double version = 0.1;
 
-    //public final static String dateiName = "C:\\Users\\Daniel\\eclipse-workspace\\MS_EO_RECHNER\\src\\de\\daniel\\brueggemann\\tu\\berlin\\MSRechner\\test.txt";
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+//public final static String dateiName = "C:\\Users\\Daniel\\eclipse-workspace\\MS_EO_RECHNER\\src\\de\\daniel\\brueggemann\\tu\\berlin\\MSRechner\\test.txt";
     public static void main(String[] args) {
         Einleser ein = new EinleserImpl();
         System.out.println("BITTE GEBEN SIE DEN PROBEN NAMEN AN:");
@@ -191,6 +224,13 @@ public class userinterface {
 
     }
 
+    /**
+     * Tensidzusammenfassung string.
+     *
+     * @param bedeutung the bedeutung
+     * @param tensid    the tensid
+     * @return the string
+     */
     public static String Tensidzusammenfassung(String bedeutung, Tensid tensid) {
         String ausgabe = "Für die Auswertung " + bedeutung + " Ergaben sich folgende werte " + "Tenside: " + tensid.getName() + " Mn: " + tensid.getMN() + " Mw: " + tensid.getMW() + " PDI: " + tensid.getPDI() + " EOGruppen: " + tensid.getEO() + " CO2 Gruppen: " + tensid.getCO2() + " CO2 Gehalt: " + tensid.getCO2Gehalt() + " Selektivität CO2 ist: " + tensid.getSelectivitaet() + "Einsatzverhältnis waehre: 1/" + (tensid.getCO2() + tensid.getEO()) / 2;
         return ausgabe;
@@ -517,10 +557,20 @@ public class userinterface {
         DodecanolPR = dodecanolPR;
     }
 
+    /**
+     * Is natrium boolean.
+     *
+     * @return the boolean
+     */
     public boolean isNatrium() {
         return Natrium;
     }
 
+    /**
+     * Sets natrium.
+     *
+     * @param natrium the natrium
+     */
     public void setNatrium(boolean natrium) {
         Natrium = natrium;
     }

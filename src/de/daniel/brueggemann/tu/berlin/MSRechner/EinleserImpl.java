@@ -2,6 +2,9 @@ package de.daniel.brueggemann.tu.berlin.MSRechner;
 
 import java.util.Scanner;
 
+/**
+ * The type Einleser.
+ */
 public class EinleserImpl implements Einleser {
     /**
      * Liest einen belibige Integerzahl ein.
