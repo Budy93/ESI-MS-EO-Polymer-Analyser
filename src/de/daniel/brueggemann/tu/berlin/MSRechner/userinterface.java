@@ -192,7 +192,7 @@ public class userinterface {
     }
 
     public static String Tensidzusammenfassung(String bedeutung, Tensid tensid) {
-        String ausgabe = "Für die Auswertung " + bedeutung + " Ergaben sich folgende werte " + "Tenside: " + tensid.getName() + " Mn: " + tensid.getMN() + " Mw: " + tensid.getMW() + " PDI: " + tensid.getPDI() + " EOGruppen: " + tensid.getEO() + " CO2 Gruppen: " + tensid.getCO2() + " CO2 Gehalt: " + tensid.getCO2Gehalt() + " Selektivität CO2 ist: " + tensid.getSelectivitaet() + "Einsatzverhältnis waehre: 1/" + (tensid.getCO2() + tensid.getEO());
+        String ausgabe = "Für die Auswertung " + bedeutung + " Ergaben sich folgende werte " + "Tenside: " + tensid.getName() + " Mn: " + tensid.getMN() + " Mw: " + tensid.getMW() + " PDI: " + tensid.getPDI() + " EOGruppen: " + tensid.getEO() + " CO2 Gruppen: " + tensid.getCO2() + " CO2 Gehalt: " + tensid.getCO2Gehalt() + " Selektivität CO2 ist: " + tensid.getSelectivitaet() + "Einsatzverhältnis waehre: 1/" + (tensid.getCO2() + tensid.getEO()) / 2;
         return ausgabe;
     }
 
