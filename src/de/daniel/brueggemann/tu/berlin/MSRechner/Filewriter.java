@@ -23,4 +23,12 @@ public interface Filewriter {
      * @return the boolean
      */
     public boolean writteDate(String filename, String[] daten);
+
+    /**
+     * Mkdir boolean.
+     *
+     * @param eingang the path
+     * @return the boolean
+     */
+    public boolean mkdir(String eingang);
 }

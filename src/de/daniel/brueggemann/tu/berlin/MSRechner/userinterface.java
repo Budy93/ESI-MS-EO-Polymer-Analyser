@@ -73,12 +73,18 @@ public class userinterface {
 //public final static String dateiName = "C:\\Users\\Daniel\\eclipse-workspace\\MS_EO_RECHNER\\src\\de\\daniel\\brueggemann\\tu\\berlin\\MSRechner\\test.txt";
     public static void main(String[] args) {
         Einleser ein = new EinleserImpl();
+        Filewriter file = new FilewriterImpl();
         System.out.println("BITTE GEBEN SIE DEN PROBEN NAMEN AN:");
         String Probenname = ein.Stringeinleser();
         String Filename = Probenname + ".txt";
         String dateiName = System.getProperty("user.home") + "\\Desktop\\" + Filename;
         String AusgabeDatei = System.getProperty("user.home") + "\\Desktop\\" + Probenname;
+        String Datei = AusgabeDatei + "\\" + Probenname;
         //+ Probenname+"\\"
+        Boolean ordner = file.mkdir(AusgabeDatei + "\\");
+        if (ordner != true) {
+            System.out.println("FEHLER");
+        }
         System.out.println("Wurde mit Natrium gearbeitet true or false?");
         Boolean natrium = ein.JaoderNein();
         KorrekturwerteDaten.setNatrium(natrium);
@@ -149,14 +155,13 @@ public class userinterface {
             }
         }*/
         //}
-        Filewriter file = new FilewriterImpl();
         Tensid tensid = new Tensid();
         //Gibt inkorrigiertes Tensid ohne ESI Korrektur zurück
         tensid = analy.charakterisierung(Probenname, CO2GehaltinProzent, messdaten, true, false);
         Tensid tensidEORelevant = new Tensid();
         //Gibt Relevante EO Tensid aus
         tensidEORelevant = analy.charakteristikKorregiert(Probenname, CO2GehaltinProzent, ana, true, false);
-        boolean erfolg = file.writtereport(AusgabeDatei, tensid, treffer, ana);
+        boolean erfolg = file.writtereport(Datei, tensid, treffer, ana);
         if (erfolg == true) {
             System.out.println("Datei Geschrieben");
         } else {
@@ -176,14 +181,14 @@ public class userinterface {
         Tensid eindeutigesTensid = new Tensid();
         String[] eindeutigeReport = analy.CharalterAusgabe(Probenname, CO2GehaltinProzent, ane, true, false);
         eindeutigesTensid = analy.getTens();
-        Boolean eindeutigReo = file.writteDate(AusgabeDatei + "_EindeutigeCharckter.txt", eindeutigeReport);
+        Boolean eindeutigReo = file.writteDate(Datei + "_EindeutigeCharckter.txt", eindeutigeReport);
         if (eindeutigReo != true) {
             System.out.println("Fehler beim Schreiben der Daten");
         }
         String[] eindeutigeReportRel = analy.CharalterAusgabeRel(Probenname, CO2GehaltinProzent, ane, true, false);
         Tensid eindeutigesTensidRelevanteEO = new Tensid();
         eindeutigesTensidRelevanteEO = analy.getTens();
-        Boolean eindeutigReoRL = file.writteDate(AusgabeDatei + "_EindeutigeCharckterRelativ.txt", eindeutigeReportRel);
+        Boolean eindeutigReoRL = file.writteDate(Datei + "_EindeutigeCharckterRelativ.txt", eindeutigeReportRel);
         if (eindeutigReoRL != true) {
             System.out.println("Fehler beim Schreiben der Daten");
         }
@@ -217,7 +222,7 @@ public class userinterface {
         abschlussbericht[10] = Tensidzusammenfassung("Wurde nur daten Beachet die einen eindeutigen EO Wert haben und keine mehrfach bedeutung.", eindeutigesTensid);
         abschlussbericht[12] = Tensidzusammenfassung("Wurde nur daten Beachet die einen eindeutigen EO Wert haben und keine mehrfach bedeutung haben als auch Relativ mehr als 1 vorlagen.", eindeutigesTensidRelevanteEO);
         abschlussbericht[14] = ausage;
-        Boolean lastreport = file.writteDate(AusgabeDatei + "_Abschluss.txt", abschlussbericht);
+        Boolean lastreport = file.writteDate(Datei + "_Abschluss.txt", abschlussbericht);
         if (eindeutigReo != true) {
             System.out.println("Fehler beim Schreiben der Daten");
         }

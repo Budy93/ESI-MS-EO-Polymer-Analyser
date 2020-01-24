@@ -2,11 +2,13 @@ package de.daniel.brueggemann.tu.berlin.MSRechner;
 
 import com.sun.xml.internal.fastinfoset.algorithm.BooleanEncodingAlgorithm;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * The type Filewriter.
@@ -156,6 +158,34 @@ public class FilewriterImpl implements Filewriter {
                 erfolg = true;
             }
         }
+        return erfolg;
+    }
+
+    @Override
+    public boolean mkdir(String eingang) {
+        String dirPath = eingang;
+        String fileName = "test.png";
+        Path filePath = Paths.get(dirPath + fileName);
+        File folder;
+        File file;
+        folder = new File(dirPath);
+        //file = new File(dirPath + fileName);
+        Boolean erfolg = false;
+        if (!folder.exists()) {
+            try {
+                Files.createDirectory(filePath.getParent());
+                erfolg = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        /*if(!file.exists()) {
+            try {
+                Files.createFile(filePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }*/
         return erfolg;
     }
 }
