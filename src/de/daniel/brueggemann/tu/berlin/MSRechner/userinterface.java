@@ -48,9 +48,9 @@ public class userinterface {
      * The constant MPHK.
      */
     public final static double MPHK = 19.985217;
-    private boolean LaurinsauerePR = true;
+    private boolean LaurinsauerePR = false;
     private boolean EOPR = true;
-    private boolean DodecanolPR = false;
+    private boolean DodecanolPR = true;
     private boolean Natrium = false;
     /**
      * The constant ana.
@@ -90,6 +90,12 @@ public class userinterface {
         KorrekturwerteDaten.setNatrium(natrium);
         System.out.println("Wie viel Co2 hat die Probe in Prozent?");
         double CO2GehaltinProzent = ein.doublereader();
+        System.out.println("Wollen sie auf Dodecanol Pruefen? true or false");
+        Boolean dode = ein.JaoderNein();
+        System.out.println("Wollen sie auf Dodecanol Pruefen? true or false");
+        Boolean lau = ein.JaoderNein();
+        System.out.println("Wollen sie auf EO-Ketten alleine Pruefen? true or false");
+        Boolean eoP = ein.JaoderNein();
         ///TO-DO
 
 
@@ -129,14 +135,14 @@ public class userinterface {
         int[] ergebnisausdruck = new int[4];
         AnalyserInterface analy = new AnalyseImplementierung();
         Treffer treffer = new Treffer();
-        treffer = analy.anzahlErgebnisse(messdaten, true, false, true);
+        treffer = analy.anzahlErgebnisse(messdaten, lau, dode, eoP);
         ergebnisausdruck[0] = treffer.getTreffer();
         ergebnisausdruck[1] = treffer.getDoppelt();
         ergebnisausdruck[2] = treffer.getKeinTreffer();
         ergebnisausdruck[3] = treffer.getEindeutig();
         String ausage = "Es wurden " + MSwerte.length + " ausgewerte dabei wurden " + ergebnisausdruck[0] + " Treffer gefunden, davon waren " + ergebnisausdruck[1] + " doppelt. Eindeutige einzelltreffer waren: " + ergebnisausdruck[3] + " Nichts wurde gefunden bei " + ergebnisausdruck[2];
         System.out.println(ausage);
-        ana = analy.esikorrekturObject(messdaten, treffer, true, false, true);
+        ana = analy.esikorrekturObject(messdaten, treffer, lau, dode, eoP);
         for (int i = 0; i < ana.getTrefferID().length; i++) {
             System.out.println(ana.getKorrektur()[i]);
         }
@@ -157,10 +163,10 @@ public class userinterface {
         //}
         Tensid tensid = new Tensid();
         //Gibt inkorrigiertes Tensid ohne ESI Korrektur zurück
-        tensid = analy.charakterisierung(Probenname, CO2GehaltinProzent, messdaten, true, false);
+        tensid = analy.charakterisierung(Probenname, CO2GehaltinProzent, messdaten, lau, dode);
         Tensid tensidEORelevant = new Tensid();
         //Gibt Relevante EO Tensid aus
-        tensidEORelevant = analy.charakteristikKorregiert(Probenname, CO2GehaltinProzent, ana, true, false);
+        tensidEORelevant = analy.charakteristikKorregiert(Probenname, CO2GehaltinProzent, ana, lau, dode);
         boolean erfolg = file.writtereport(Datei, tensid, treffer, ana);
         if (erfolg == true) {
             System.out.println("Datei Geschrieben");
@@ -168,7 +174,7 @@ public class userinterface {
             System.out.println("Fehler beim Schreiben der Daten");
         }
         AnalysenObjekt ane = new AnalysenObjekt();
-        ane = analy.esikorrekturEindeutig(messdaten, treffer, true, false, true);
+        ane = analy.esikorrekturEindeutig(messdaten, treffer, lau, dode, eoP);
         /*
         try{
             ane=analy.esikorrekturEindeutig(messdaten,treffer,true,false,true);
@@ -179,13 +185,13 @@ public class userinterface {
         }
         */
         Tensid eindeutigesTensid = new Tensid();
-        String[] eindeutigeReport = analy.CharalterAusgabe(Probenname, CO2GehaltinProzent, ane, true, false);
+        String[] eindeutigeReport = analy.CharalterAusgabe(Probenname, CO2GehaltinProzent, ane, lau, dode);
         eindeutigesTensid = analy.getTens();
         Boolean eindeutigReo = file.writteDate(Datei + "_EindeutigeCharckter.txt", eindeutigeReport);
         if (eindeutigReo != true) {
             System.out.println("Fehler beim Schreiben der Daten");
         }
-        String[] eindeutigeReportRel = analy.CharalterAusgabeRel(Probenname, CO2GehaltinProzent, ane, true, false);
+        String[] eindeutigeReportRel = analy.CharalterAusgabeRel(Probenname, CO2GehaltinProzent, ane, lau, dode);
         Tensid eindeutigesTensidRelevanteEO = new Tensid();
         eindeutigesTensidRelevanteEO = analy.getTens();
         Boolean eindeutigReoRL = file.writteDate(Datei + "_EindeutigeCharckterRelativ.txt", eindeutigeReportRel);
