@@ -165,8 +165,18 @@ public class userinterface {
         4 Tenside
         letzter satz
          */
+        double EOmittel = 0;
+        for (int i = 0; i < ana.getEoWert().length; i++) {
+            EOmittel += ana.getEoWert()[i];
+        }
+        EOmittel = EOmittel / ana.getEoWert().length;
+        double EOmittelREL = 0;
+        for (int i = 0; i < ane.getEoWert().length; i++) {
+            EOmittelREL += ane.getEoWert()[i];
+        }
+        EOmittelREL = EOmittelREL / ane.getEoWert().length;
         String[] abschlussbericht = new String[16];
-        abschlussbericht[0] = "Ausgewertet wurde die Probe: " + Probenname;
+        abschlussbericht[0] = "Ausgewertet wurde die Probe: " + Probenname + " Mittlerer EO-Wert ist: " + EOmittel + " relevantes Mittel: " + EOmittelREL;
         abschlussbericht[2] = "Genutzte Programm Version: " + version;
         abschlussbericht[4] = "Gesetzte Optionen Natrium: " + natrium + " Dodecanol: " + "false" + " Laurinsaeure: " + "TRUE" + " EO: " + "TRUE";
         abschlussbericht[6] = Tensidzusammenfassung("Wurde keine Korrektur beachtet", tensid);
@@ -182,7 +192,7 @@ public class userinterface {
     }
 
     public static String Tensidzusammenfassung(String bedeutung, Tensid tensid) {
-        String ausgabe = "Für die Auswertung " + bedeutung + " Ergaben sich folgende werte " + "Tenside: " + tensid.getName() + " Mn: " + tensid.getMN() + " Mw: " + tensid.getMW() + " PDI: " + tensid.getPDI() + " EOGruppen: " + tensid.getEO() + " CO2 Gruppen: " + tensid.getCO2() + " CO2 Gehalt: " + tensid.getCO2Gehalt() + " Selektivität CO2 ist: " + tensid.getSelectivitaet();
+        String ausgabe = "Für die Auswertung " + bedeutung + " Ergaben sich folgende werte " + "Tenside: " + tensid.getName() + " Mn: " + tensid.getMN() + " Mw: " + tensid.getMW() + " PDI: " + tensid.getPDI() + " EOGruppen: " + tensid.getEO() + " CO2 Gruppen: " + tensid.getCO2() + " CO2 Gehalt: " + tensid.getCO2Gehalt() + " Selektivität CO2 ist: " + tensid.getSelectivitaet() + "Einsatzverhältnis waehre: 1/" + (tensid.getCO2() + tensid.getEO());
         return ausgabe;
     }
 
