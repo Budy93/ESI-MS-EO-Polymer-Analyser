@@ -422,6 +422,8 @@ public class AnalyseImplementierung implements AnalyserInterface {
             EOpCO2 = (Mw - 169 - 17) / 44;
         } else if (laurin == true) {
             EOpCO2 = (Mw - 199 - 17) / 44;
+        } else {
+            EOpCO2 = Mw / 44;
         }
         Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
         EO = EOpCO2 - Co2;
@@ -508,6 +510,8 @@ public class AnalyseImplementierung implements AnalyserInterface {
             EOpCO2 = (Mw - 169 - 17) / 44;
         } else if (laurin == true) {
             EOpCO2 = (Mw - 199 - 17) / 44;
+        } else {
+            EOpCO2 = Mw / 44;
         }
         Co2 = ((Mw * CO2GehaltinProzent) / 100) / 44;
         EO = EOpCO2 - Co2;
